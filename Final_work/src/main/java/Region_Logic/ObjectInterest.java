@@ -63,6 +63,10 @@ public abstract class ObjectInterest {
         return isAlive;
     }
 
+    public void setAliveStatus(boolean status) {
+        this.isAlive = status;
+    }
+
     public void addToInsideObjectsList(InsideObjectType type) {
         insideObjectsList.add(type);
     }
@@ -70,11 +74,14 @@ public abstract class ObjectInterest {
     public void removeFromInsideObjectsList(InsideObjectType type) {
         insideObjectsList.remove(type);
     }
-    public boolean searchForTree(){
+
+    public boolean searchForTree() {
         return (insideObjectsList.contains(InsideObjectType.TREE));
     }
+
     public abstract String getObjectType();
-    public String generateObjectUniqueName(int index){
+
+    public String generateObjectUniqueName(int index) {
         return getObjectType() + "номер " + index;
     }
 }

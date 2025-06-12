@@ -21,7 +21,7 @@ public class Player {
     public Player() {
         this.inventory = new Inventory(0);
     }
-    
+
     public Inventory getInventory() {
         return inventory;
     }

@@ -6,7 +6,11 @@ package Regions;
 
 import Bioms.*;
 import Region_Logic.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -49,5 +53,10 @@ public class MildClimateRegion extends BaseRegion {
     @Override
     public void generateUniqueRegion(int index) {
         this.uniqueName = getRegionType() + " region " + index;
+    }
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+        return ImageIO.read(new File("src\\main\\resources\\mildClimate.jpg"));
     }
 }
