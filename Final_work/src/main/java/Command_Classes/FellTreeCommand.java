@@ -12,22 +12,29 @@ import Region_Logic.*;
  * @author Andrey
  */
 public class FellTreeCommand implements Command {
-
-    private ActionResult actionResult= new ActionResult();
-    private Player player;
+    
+    private ActionResult actionResult = new ActionResult();
+    
     @Override
-    public ActionResult execute(ObjectInterest obj) {
-       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
-       if (approveStatus == true){
-           actionResult.setMessage("Вы срубили дерево!");
-           player.getInventory().addToInventory(1);
-       }
-       else{
-           actionResult.setMessage("Срубить дерево тут нельзя!");
-       }
-       actionResult.setObjectInerest(obj);
-       actionResult.setStatus(true);
-       return actionResult;
+    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
+        boolean approveStatus = obj.searchForTree();
+        String message;
+        if (approveStatus) {
+            message = "Вы срубили дерево!";
+            obj.removeFromInsideObjectsList(InsideObjectType.TREE);
+            inventory.addToInventory(1);
+            actionResult.setStatus(true);
+        } else {
+            message = "Срубить дерево тут нельзя!";
+            actionResult.setStatus(false);
+        }
+        actionResult.setMessage(message);
+        actionResult.setObjectInerest(obj);
+        return actionResult;
     }
     
+    @Override
+    public String getName() {
+        return "Срубить дерево";
+    }
 }

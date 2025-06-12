@@ -13,32 +13,33 @@ import Region_Logic.*;
  */
 public class BuildHouseCommand implements Command {
 
-    private ActionResult actionResult= new ActionResult();
-    private Player player = new Player();
+    private ActionResult actionResult = new ActionResult();
+
     @Override
-    public ActionResult execute(ObjectInterest obj) {
-       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
-       if (approveStatus == true){
-           actionResult.setMessage("Вы построили дерево!");
-           checkResources();
-       }
-       else{
-           actionResult.setMessage("Построить дом в этом месте нельзя!");
-           actionResult.setStatus(false);
-       }
-       actionResult.setObjectInerest(obj);
-       return actionResult;
+    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
+        boolean approveStatus = obj.getHouseBuildingAllowedStatus();
+        String message;
+        if (approveStatus && checkResources(10, inventory)) {
+            obj.addToInsideObjectsList(InsideObjectType.HOUSE);
+            message = "Вы построили дом!";
+            inventory.useInventory(10);
+            actionResult.setStatus(true);
+        } else {
+            if (!approveStatus) {
+                message = "Построить дом в этом месте нельзя!";
+            } else {
+                message = "У вас недостаточно ресурсов!";
+            }
+            actionResult.setStatus(false);
+        }
+        actionResult.setMessage(message);
+        actionResult.setObjectInerest(obj);
+        return actionResult;
     }
-    public void checkResources(){
-       if (player.getInventory().getNumLogs()>=10){
-           player.getInventory().useInventory(10);
-             actionResult.setStatus(true);
-       }
-       else{
-           actionResult.setMessage("Построить дом невозможно! У вас нет ресурсов!");
-             actionResult.setStatus(false);
-       }
-       
-   }
-    
+
+    @Override
+    public String getName() {
+        return "Построить дом";
+    }
+
 }
