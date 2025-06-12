@@ -5,6 +5,7 @@
 package Regions;
 
 import Bioms.Tundra;
+import Region_Logic.*;
 import java.util.ArrayList;
 
 /**
@@ -12,15 +13,23 @@ import java.util.ArrayList;
  * @author Andrey
  */
 public class TundraRegion extends BaseRegion {
+
     private final Tundra tundra;
+
     public TundraRegion() {
-        this.tundra = new Tundra() {};
+        this.tundra = new Tundra() {
+        };
+        generateObjectsInterestList();
+        for (ObjectInterest obj : getObjectsInterestList()) {
+            obj.generateInsideObjectsList();
+        }
     }
+
     @Override
-    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+    protected ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList() {
         return tundra.getPossibleObjectsInterestList();
     }
-    
+
     @Override
     protected int getMinNumOfClasses() {
         return 3;
@@ -29,5 +38,15 @@ public class TundraRegion extends BaseRegion {
     @Override
     protected int getMaxNumOfClasses() {
         return 5;
+    }
+
+    @Override
+    public String getRegionType() {
+        return "Tundra";
+    }
+
+    @Override
+    public void generateUniqueRegion(int index) {
+        this.uniqueName = getRegionType() + " region " + index;
     }
 }

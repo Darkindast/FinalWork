@@ -4,6 +4,7 @@
  */
 package Bioms;
 
+import Region_Logic.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,14 +13,14 @@ import java.util.Arrays;
  * @author Andrey
  */
 public abstract class Biom {
+    
+    private final ArrayList<Class<? extends ObjectInterest>> possibleObjectsInterestList = new ArrayList<>();
 
-    private final ArrayList<Class<?>> possibleObjectsInterestList = new ArrayList<>();
-
-    protected Biom(Class<?>... classes) {
+    protected Biom(Class<? extends ObjectInterest>... classes) {
         possibleObjectsInterestList.addAll(Arrays.asList(classes));
     }
 
-    public ArrayList<Class<?>> getPossibleObjectsInterestList() {
+    public ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList() {
         return possibleObjectsInterestList;
     }
 }

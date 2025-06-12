@@ -4,8 +4,7 @@
  */
 package Region_Logic;
 
-import Regions.BaseRegion;
-import Regions.TundraRegion;
+import Regions.*;
 import java.util.ArrayList;
 
 /**

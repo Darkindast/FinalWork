@@ -4,23 +4,30 @@
  */
 package Regions;
 
-import Bioms.MildClimate;
+import Bioms.*;
+import Region_Logic.*;
 import java.util.ArrayList;
 
 /**
  *
  * @author Andrey
  */
-public class MildClimateRegion extends BaseRegion{
+public class MildClimateRegion extends BaseRegion {
+
     private final MildClimate mildClimate;
 
     public MildClimateRegion() {
         this.mildClimate = new MildClimate() {
         };
+        generateObjectsInterestList();
+        for (ObjectInterest obj : getObjectsInterestList()) {
+            obj.generateInsideObjectsList();
+        }
+
     }
 
     @Override
-    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+    protected ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList() {
         return mildClimate.getPossibleObjectsInterestList();
     }
 
@@ -29,8 +36,18 @@ public class MildClimateRegion extends BaseRegion{
         return 3;
     }
 
-   
+    @Override
     protected int getMaxNumOfClasses() {
         return 5;
+    }
+
+    @Override
+    public String getRegionType() {
+        return "MildClimate";
+    }
+
+    @Override
+    public void generateUniqueRegion(int index) {
+        this.uniqueName = getRegionType() + " region " + index;
     }
 }
