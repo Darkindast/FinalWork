@@ -9,7 +9,7 @@ package Region_Logic;
  * @author Andrey
  */
 public enum InsideObjectType {
-    CAVE("Пещера"),
+   CAVE("Пещера"),
     POLAR_BEAR("Полярный медведь"),
     SNOW_DUNE("Снежный бархан"),
     TREE("Дерево"),
@@ -45,8 +45,8 @@ public enum InsideObjectType {
     CLIFF("Скала"),
     SNAKE("Змея"),
     LIZARD("Ящерица"),
-    HALOPHYTE("Галофит");
-    
+    HALOPHYTE("Галофит"),
+    BONFIRE("Костер");
     
     private final String value;
 

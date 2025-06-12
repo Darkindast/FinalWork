@@ -5,6 +5,7 @@
 package Region_Logic;
 
 import Command_Classes.*;
+import Regions.*;
 import java.util.ArrayList;
 
 /**
@@ -12,34 +13,40 @@ import java.util.ArrayList;
  * @author Andrey
  */
 public class Player {
-   private Inventory inventory;
+
+    private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
-    private Command buildHouseAction;
-    private Command fellTreeAction;
-    private Command makeFireAction;
+    private BaseRegion currentRegion;
+
+    public Player() {
+        this.inventory = new Inventory(0);
+    }
     
-    public Inventory getInventory(){
+    public Inventory getInventory() {
         return inventory;
     }
-    public ArrayList<ActionResult> getActionList(){
+
+    public ArrayList<ActionResult> getActionList() {
         return actionHistory;
     }
-    public void setInventory(Inventory invent){
+
+    public void setInventory(Inventory invent) {
         this.inventory = invent;
     }
-    public void setActionList(ArrayList<ActionResult> history){
+
+    public void setActionList(ArrayList<ActionResult> history) {
         this.actionHistory = history;
     }
-    public ActionResult buildHouse(ObjectInterest obj){
-        return buildHouseAction.execute(obj);
+
+    public ActionResult makeAction(ObjectInterest obj, Command action) {
+        return action.execute(obj, inventory);
     }
-    public ActionResult fellTree(ObjectInterest obj){
-        return fellTreeAction.execute(obj);
+
+    public void setCurrentRegion(BaseRegion region) {
+        this.currentRegion = region;
     }
-    public ActionResult makeFire(ObjectInterest obj){
-        return makeFireAction.execute(obj);
-    }
-    public ActionResult makeAction(ObjectInterest obj, Command action){
-        return action.execute(obj);
+
+    public BaseRegion getCurrentRegion() {
+        return currentRegion;
     }
 }

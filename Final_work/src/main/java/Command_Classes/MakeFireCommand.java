@@ -4,6 +4,7 @@
  */
 package Command_Classes;
 
+import Region_Logic.*;
 import Region_Logic.Inventory;
 import Region_Logic.ObjectInterest;
 import java.util.Random;
