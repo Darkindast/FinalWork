@@ -6,15 +6,19 @@ package Command_Classes;
 
 import Region_Logic.ObjectInterest;
 import Region_Logic.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Andrey
  */
 public class FellTreeCommand implements Command {
-    
+
     private ActionResult actionResult = new ActionResult();
-    
+
     @Override
     public ActionResult execute(ObjectInterest obj, Inventory inventory) {
         boolean approveStatus = obj.searchForTree();
@@ -22,6 +26,7 @@ public class FellTreeCommand implements Command {
         if (approveStatus) {
             message = "Вы срубили дерево!";
             obj.removeFromInsideObjectsList(InsideObjectType.TREE);
+            obj.addToInsideObjectsList(InsideObjectType.STUMP);
             inventory.addToInventory(1);
             actionResult.setStatus(true);
         } else {
@@ -29,12 +34,17 @@ public class FellTreeCommand implements Command {
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);
-        actionResult.setObjectInerest(obj);
+        actionResult.setObjectInterest(obj);
         return actionResult;
     }
-    
-    @Override
-    public String getName() {
+
+    public static String getName() {
         return "Срубить дерево";
     }
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+        return ImageIO.read(new File("src\\main\\resources\\fellTree.png"));
+    }
+
 }

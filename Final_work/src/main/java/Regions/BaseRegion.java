@@ -5,6 +5,8 @@
 package Regions;
 
 import Region_Logic.ObjectInterest;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,6 +20,7 @@ public abstract class BaseRegion {
     private final ArrayList<ObjectInterest> objectsInterestList = new ArrayList<>();
     private final Random random = new Random();
     String uniqueName = null;
+    protected BufferedImage image;
 
     protected abstract ArrayList<Class<? extends ObjectInterest>> getPossibleObjectsInterestList();
 
@@ -33,15 +36,16 @@ public abstract class BaseRegion {
 
         for (int i = 0; i < numOfClasses; i++) {
             int randomIndex = random.nextInt(size);
-            Class<? extends ObjectInterest> classs = possibleObjectsInterestList.get(randomIndex);
+            Class<? extends ObjectInterest> clazz = possibleObjectsInterestList.get(randomIndex);
             try {
-               ObjectInterest obj = classs.getDeclaredConstructor().newInstance();
-                objectsInterestList.add(classs.getDeclaredConstructor().newInstance());
+                ObjectInterest obj = clazz.getDeclaredConstructor().newInstance();
+                objectsInterestList.add(clazz.getDeclaredConstructor().newInstance());
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
                 ex.getStackTrace();
             }
 
         }
+
     }
 
     public ArrayList<ObjectInterest> getObjectsInterestList() {
@@ -57,4 +61,6 @@ public abstract class BaseRegion {
     public String getUniqueName() {
         return uniqueName;
     }
+
+    public abstract BufferedImage getImage() throws IOException;
 }

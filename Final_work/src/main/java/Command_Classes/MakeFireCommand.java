@@ -10,6 +10,7 @@ import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
@@ -31,7 +32,7 @@ public class MakeFireCommand implements Command {
                 message = "Вы развели костер и сожгли объект интереса в этом регионе!";
                 obj.setAliveStatus(false);
                 for (InsideObjectType insideObj : new ArrayList<>(obj.getInsideObjects())) {
-                                  obj.removeFromInsideObjectsList(insideObj);
+                    obj.removeFromInsideObjectsList(insideObj);
    }
 
             } else {

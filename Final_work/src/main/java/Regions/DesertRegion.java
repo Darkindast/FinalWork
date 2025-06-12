@@ -6,7 +6,11 @@ package Regions;
 
 import Bioms.Desert;
 import Region_Logic.ObjectInterest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -16,7 +20,7 @@ public class DesertRegion extends BaseRegion {
 
     private final Desert desert;
 
-    public DesertRegion() {
+    public DesertRegion() throws IOException {
         this.desert = new Desert() {
         };
         generateObjectsInterestList();
@@ -40,6 +44,7 @@ public class DesertRegion extends BaseRegion {
         return 4;
     }
 
+    @Override
     public String getRegionType() {
         return "Desert";
     }
@@ -49,4 +54,9 @@ public class DesertRegion extends BaseRegion {
         this.uniqueName = getRegionType() + " region " + index;
     }
 
+    @Override
+    public BufferedImage getImage() throws IOException {
+        return ImageIO.read(new File("src\\main\\resources\\desert.jpg"));
+
+    }
 }

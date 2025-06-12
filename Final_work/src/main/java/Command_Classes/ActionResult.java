@@ -11,19 +11,24 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class ActionResult {
+
     private String message;
     private boolean status;
     private boolean isInventoryChanged;
     private ObjectInterest placeOfAction;
-    public void setMessage(String message){
+
+    public void setMessage(String message) {
         this.message = message;
     }
-    public void setStatus(boolean status){
+
+    public void setStatus(boolean status) {
         this.status = status;
     }
-    public void setObjectInerest(ObjectInterest obj){
+
+    public void setObjectInterest(ObjectInterest obj) {
         this.placeOfAction = obj;
     }
+
     public String getMessage() {
         return message;
     }
@@ -35,7 +40,8 @@ public class ActionResult {
     public ObjectInterest getPlaceOfAction() {
         return placeOfAction;
     }
-    public String getCompleteResult(){
-        return message + " в объекте интереса " + placeOfAction;
+
+    public String getCompleteResult() {
+        return message + " в объекте интереса " + placeOfAction.getObjectType();
     }
 }

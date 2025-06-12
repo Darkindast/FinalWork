@@ -6,6 +6,8 @@ package Command_Classes;
 
 import Region_Logic.Inventory;
 import Region_Logic.ObjectInterest;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  *
@@ -15,9 +17,9 @@ public interface Command {
 
     ActionResult execute(ObjectInterest objectInterest, Inventory inventory);
 
-    String getName();
-
     default boolean checkResources(int numLogs, Inventory inventory) {
         return (inventory.getNumLogs() >= numLogs);
     }
+
+    BufferedImage getImage() throws IOException;
 }

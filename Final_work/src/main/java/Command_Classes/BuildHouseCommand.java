@@ -6,6 +6,10 @@ package Command_Classes;
 
 
 import Region_Logic.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -33,13 +37,17 @@ public class BuildHouseCommand implements Command {
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);
-        actionResult.setObjectInerest(obj);
+        actionResult.setObjectInterest(obj);
         return actionResult;
     }
 
-    @Override
-    public String getName() {
+    public static String getName() {
         return "Построить дом";
+    }
+
+    @Override
+    public BufferedImage getImage() throws IOException {
+        return ImageIO.read(new File("src\\main\\resources\\house.png"));
     }
 
 }

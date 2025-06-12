@@ -16,20 +16,6 @@ import Regions.TundraRegion;
 public class Final_work {
 
     public static void main(String[] args) {
-        BaseRegion tundraRegion = new TundraRegion();
-        tundraRegion.generateObjectsInterestList();
-        BaseRegion desertRegion = new DesertRegion();
-        desertRegion.generateObjectsInterestList();
-        BaseRegion mildClimateRegion = new MildClimateRegion();
-        mildClimateRegion.generateObjectsInterestList();
-        for (Object obj : tundraRegion.getObjectsInterestList()) {
-            System.out.println(obj.toString());
-        }
-        for (Object obj : desertRegion.getObjectsInterestList()) {
-            System.out.println(obj.toString());
-        }
-        for (Object obj : mildClimateRegion.getObjectsInterestList()) {
-            System.out.println(obj.toString());
-        }
+
     }
 }
