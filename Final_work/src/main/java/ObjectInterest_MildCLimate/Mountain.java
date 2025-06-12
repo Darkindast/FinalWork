@@ -4,6 +4,7 @@
  */
 package ObjectInterest_MildCLimate;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**

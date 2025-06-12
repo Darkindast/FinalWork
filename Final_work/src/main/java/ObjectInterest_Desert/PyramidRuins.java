@@ -4,12 +4,15 @@
  */
 package ObjectInterest_Desert;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
  *
  * @author Andrey
  */
-public class PyramidRuins extends ObjectInterest{
-    
+public class PyramidRuins extends ObjectInterest {
+     public PyramidRuins(){
+         super(PYRAMID, TOMB);
+     }
 }

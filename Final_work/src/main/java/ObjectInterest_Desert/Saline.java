@@ -4,12 +4,16 @@
  */
 package ObjectInterest_Desert;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
  *
  * @author Andrey
  */
-public class Saline extends ObjectInterest{
+public class Saline extends ObjectInterest {
+     public Saline(){
+         super(LAKE, BUSH, CACTUS, HALOPHYTE);
+     }
     
 }

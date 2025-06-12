@@ -4,12 +4,15 @@
  */
 package ObjectInterest_Desert;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
  *
  * @author Andrey
  */
-public class Oasis extends ObjectInterest{
-    
+public class Oasis extends ObjectInterest {
+   public Oasis(){
+       super(PALM_TREE,OLIVE_TREE,LAKE,PASTURE);
+   }
 }

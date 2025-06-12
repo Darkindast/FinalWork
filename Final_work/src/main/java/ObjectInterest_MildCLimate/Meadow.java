@@ -4,6 +4,7 @@
  */
 package ObjectInterest_MildCLimate;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
@@ -11,5 +12,8 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Meadow extends ObjectInterest {
+    public Meadow(){
+        super(BUSH, LAKE, STREAM, PASTURE, HAYSTACK);
+    }
     
 }

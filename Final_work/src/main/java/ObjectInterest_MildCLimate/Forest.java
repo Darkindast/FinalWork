@@ -4,6 +4,7 @@
  */
 package ObjectInterest_MildCLimate;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
@@ -11,5 +12,7 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Forest extends ObjectInterest {
-    
+    public Forest(){
+        super(TREE, BEAR, FLOWERS, BUSH, HARE, MOOSE);
+    } 
 }

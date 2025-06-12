@@ -4,12 +4,15 @@
  */
 package ObjectInterest_Desert;
 
+import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
  *
  * @author Andrey
  */
-public class Gorge extends ObjectInterest{
-    
+public class Gorge extends ObjectInterest {
+    public Gorge(){
+        super(STREAM, BOULDER, CACTUS);
+    }
 }
