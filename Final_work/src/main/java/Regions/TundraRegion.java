@@ -4,10 +4,30 @@
  */
 package Regions;
 
+import Bioms.Tundra;
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrey
  */
-public class TundraRegion {
+public class TundraRegion extends BaseRegion {
+    private final Tundra tundra;
+    public TundraRegion() {
+        this.tundra = new Tundra() {};
+    }
+    @Override
+    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return tundra.getPossibleObjectsInterestList();
+    }
     
+    @Override
+    protected int getMinNumOfClasses() {
+        return 3;
+    }
+
+    @Override
+    protected int getMaxNumOfClasses() {
+        return 5;
+    }
 }

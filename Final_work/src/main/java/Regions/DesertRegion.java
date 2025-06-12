@@ -4,10 +4,31 @@
  */
 package Regions;
 
+import Bioms.Desert;
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrey
  */
-public class DesertRegion {
-    
+public class DesertRegion extends BaseRegion {
+    private final Desert desert;
+
+    public DesertRegion() {
+        this.desert = new Desert() {};
+    }
+
+    @Override
+    protected ArrayList<Class<?>> getPossibleObjectsInterestList() {
+        return desert.getPossibleObjectsInterestList();
+    }
+
+    @Override
+    protected int getMinNumOfClasses() {
+        return 2;
+    }
+
+    protected int getMaxNumOfClasses() {
+        return 4;
+    }
 }

@@ -4,10 +4,12 @@
  */
 package ObjectInterest_Desert;
 
+import Region_Logic.ObjectInterest;
+
 /**
  *
  * @author Andrey
  */
-public class Gorge {
+public class Gorge extends ObjectInterest{
     
 }

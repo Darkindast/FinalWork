@@ -4,10 +4,12 @@
  */
 package ObjectInterest_MildCLimate;
 
+import Region_Logic.ObjectInterest;
+
 /**
  *
  * @author Andrey
  */
-public class Swamp {
+public class Swamp extends ObjectInterest{
     
 }

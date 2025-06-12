@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ObjectInterest_Desert;
+package Command_Classes;
 
 import Region_Logic.ObjectInterest;
 
@@ -10,6 +10,11 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Oasis extends ObjectInterest{
+public class MakeFireCommand implements Command {
+
+    @Override
+    public ActionResult execute(ObjectInterest objectInterest) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
     
 }

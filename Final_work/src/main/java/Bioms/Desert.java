@@ -13,7 +13,7 @@ import ObjectInterest_Desert.Saline;
  *
  * @author Andrey
  */
-public abstract class Desert extends Biom {
+public class Desert extends Biom {
     public Desert() {
         super(Gorge.class, Oasis.class, PyramidRuins.class, Saline.class);
     }

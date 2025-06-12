@@ -4,10 +4,12 @@
  */
 package ObjectInterest_Tundra;
 
+import Region_Logic.ObjectInterest;
+
 /**
  *
  * @author Andrey
  */
-public class Geyser {
+public class Geyser extends ObjectInterest{
     
 }
