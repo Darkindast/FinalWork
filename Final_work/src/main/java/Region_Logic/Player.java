@@ -31,15 +31,15 @@ public class Player {
         this.actionHistory = history;
     }
     public ActionResult buildHouse(ObjectInterest obj){
-        return buildHouseAction.execute(obj, this);
+        return buildHouseAction.execute(obj);
     }
     public ActionResult fellTree(ObjectInterest obj){
-        return fellTreeAction.execute(obj, this);
+        return fellTreeAction.execute(obj);
     }
     public ActionResult makeFire(ObjectInterest obj){
-        return makeFireAction.execute(obj, this);
+        return makeFireAction.execute(obj);
     }
     public ActionResult makeAction(ObjectInterest obj, Command action){
-        return action.execute(obj, this);
+        return action.execute(obj);
     }
 }

@@ -15,4 +15,13 @@ public class ActionResult {
     private boolean status;
     private boolean isInventoryChanged;
     private ObjectInterest placeOfAction;
+    public void setMessage(String message){
+        this.message = message;
+    }
+    public void setStatus(boolean status){
+        this.status = status;
+    }
+    public void setObjectInerest(ObjectInterest obj){
+        this.placeOfAction = obj;
+    }
 }

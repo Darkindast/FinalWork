@@ -5,6 +5,7 @@
 package Command_Classes;
 
 import Region_Logic.ObjectInterest;
+import Region_Logic.*;
 
 /**
  *
@@ -12,9 +13,21 @@ import Region_Logic.ObjectInterest;
  */
 public class FellTreeCommand implements Command {
 
+    private ActionResult actionResult= new ActionResult();
+    private Player player;
     @Override
-    public ActionResult execute(ObjectInterest objectInterest) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public ActionResult execute(ObjectInterest obj) {
+       boolean approveStatus = obj.getHouseBuildingAllowedStatus();
+       if (approveStatus == true){
+           actionResult.setMessage("Вы срубили дерево!");
+           player.getInventory().addToInventory(1);
+       }
+       else{
+           actionResult.setMessage("Срубить дерево тут нельзя!");
+       }
+       actionResult.setObjectInerest(obj);
+       actionResult.setStatus(true);
+       return actionResult;
     }
     
 }

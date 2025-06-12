@@ -11,10 +11,19 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class MakeFireCommand implements Command {
-
+    private ActionResult actionResult= new ActionResult();
     @Override
-    public ActionResult execute(ObjectInterest objectInterest) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public ActionResult execute(ObjectInterest obj) {
+       boolean approveStatus = obj.getFireAllowedStatus();
+       if (approveStatus == true){
+           actionResult.setMessage("Вы развели костер!");
+       }
+       else{
+           actionResult.setMessage("Развести костер тут нельзя!");
+       }
+       actionResult.setObjectInerest(obj);
+       actionResult.setStatus(true);
+       return actionResult;
     }
     
 }

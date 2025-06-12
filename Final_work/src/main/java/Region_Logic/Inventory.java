@@ -16,8 +16,8 @@ public class Inventory {
   public void addToInventory(int countLogs){
       numLogs += countLogs;
   }
-  public void useInventory(){
-      numLogs=-1;
+   public void useInventory(int countLogs){
+      numLogs=-countLogs;
   }
   public int getNumLogs(){
       return numLogs;
