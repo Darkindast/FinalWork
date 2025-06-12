@@ -11,6 +11,10 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class ReindeerHerdersCamp extends ObjectInterest{
+public class ReindeerHerdersCamp extends ObjectInterest {   
+     public ReindeerHerdersCamp(){
+         super(REINDEER,REINDEER_HERDER,TENT);
+     }
+             
     
 }

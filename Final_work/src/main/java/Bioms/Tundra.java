@@ -4,7 +4,7 @@
  */
 package Bioms;
 
-import ObjectInterest_MildCLimate.Swamp;
+import ObjectInterest_Tundra.Swamp;
 import ObjectInterest_Tundra.Geyser;
 import ObjectInterest_Tundra.Glacier;
 import ObjectInterest_Tundra.OpenWoodland;

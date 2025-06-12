@@ -11,6 +11,8 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Swamp extends ObjectInterest{
-    
+public class Swamp extends ObjectInterest {
+     public Swamp(){
+         super(TREE, BUSH);
+     }
 }

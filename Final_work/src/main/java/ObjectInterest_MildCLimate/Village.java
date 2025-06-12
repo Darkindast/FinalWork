@@ -11,6 +11,8 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Village extends ObjectInterest{
-    
+public class Village extends ObjectInterest {
+    public Village(){
+        super(HOUSE, PERSON, SHOP, CHURCH);
+    }
 }

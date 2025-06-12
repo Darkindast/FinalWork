@@ -11,6 +11,8 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Glacier extends ObjectInterest{
-    
+public class Glacier extends ObjectInterest {
+     public Glacier(){
+         super(CAVE,POLAR_BEAR, SNOW_DUNE);
+     }
 }

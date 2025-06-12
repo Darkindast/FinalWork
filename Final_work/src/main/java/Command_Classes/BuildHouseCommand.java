@@ -10,7 +10,7 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class BuidHouseCommand implements Command {
+public class BuildHouseCommand implements Command {
 
     @Override
     public ActionResult execute(ObjectInterest objectInterest) {

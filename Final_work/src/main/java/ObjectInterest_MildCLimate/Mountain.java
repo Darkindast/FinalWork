@@ -11,6 +11,8 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Mountain extends ObjectInterest{
-    
+public class Mountain extends ObjectInterest {
+  public Mountain(){
+      super(CLIFF, TREE, STREAM, SNAKE, LIZARD);
+  }  
 }

@@ -11,6 +11,9 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class OpenWoodland extends ObjectInterest{
+public class OpenWoodland extends ObjectInterest {
+     public OpenWoodland(){
+         super(TREE,RAVINE,STREAM,ELEPHANT, GIRAFFE);
+     }
     
 }
