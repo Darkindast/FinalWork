@@ -12,7 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Swamp extends ObjectInterest {
-     public Swamp(){
-         super(TREE, BUSH);
-     }
+
+    public Swamp() {
+        super(TREE, BUSH);
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Болото";
+    }
+
 }

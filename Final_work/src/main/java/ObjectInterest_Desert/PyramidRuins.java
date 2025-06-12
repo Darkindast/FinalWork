@@ -12,7 +12,16 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class PyramidRuins extends ObjectInterest {
-     public PyramidRuins(){
-         super(PYRAMID, TOMB);
-     }
+
+    public PyramidRuins() {
+        super(PYRAMID, TOMB);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+
+    }
+    @Override
+    public String getObjectType() {
+        return "Руины пирамид";
+    }
+
 }

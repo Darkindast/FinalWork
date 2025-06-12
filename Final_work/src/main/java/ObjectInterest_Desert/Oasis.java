@@ -12,7 +12,14 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Oasis extends ObjectInterest {
-   public Oasis(){
-       super(PALM_TREE,OLIVE_TREE,LAKE,PASTURE);
-   }
+
+    public Oasis() {
+        super(PALM_TREE, OLIVE_TREE, LAKE, PASTURE);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
+    }
+    @Override
+    public String getObjectType() {
+        return "Оазис";
+    }
 }

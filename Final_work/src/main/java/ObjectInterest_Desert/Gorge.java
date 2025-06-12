@@ -12,7 +12,19 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Gorge extends ObjectInterest {
-    public Gorge(){
+
+    public Gorge() {
         super(STREAM, BOULDER, CACTUS);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+ 
     }
+
+    @Override
+    public String getObjectType() {
+        return "Ущелье";
+    }
+
+   
+
 }

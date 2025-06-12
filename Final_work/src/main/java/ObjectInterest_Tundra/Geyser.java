@@ -11,9 +11,16 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class Geyser extends ObjectInterest{
-    public Geyser(){
-        super(HILL, THERMAL_POOL,STREAM);
+public class Geyser extends ObjectInterest {
+
+    public Geyser() {
+        super(HILL, THERMAL_POOL, STREAM);
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
     }
-    
+    @Override
+    public String getObjectType() {
+        return "Гейзер";
+    }
+
 }

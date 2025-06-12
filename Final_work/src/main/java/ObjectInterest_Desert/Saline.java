@@ -12,8 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Saline extends ObjectInterest {
-     public Saline(){
-         super(LAKE, BUSH, CACTUS, HALOPHYTE);
-     }
-    
+
+    public Saline() {
+        super(LAKE, BUSH, CACTUS, HALOPHYTE);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Солончак";
+    }
+
 }

@@ -12,7 +12,14 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Glacier extends ObjectInterest {
-     public Glacier(){
-         super(CAVE,POLAR_BEAR, SNOW_DUNE);
-     }
+
+    public Glacier() {
+        super(CAVE, POLAR_BEAR, SNOW_DUNE);
+        this.isFireAllowed = false;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Ледник";
+    }
 }

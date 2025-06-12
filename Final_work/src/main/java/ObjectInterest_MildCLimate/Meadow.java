@@ -12,8 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Meadow extends ObjectInterest {
-    public Meadow(){
+
+    public Meadow() {
         super(BUSH, LAKE, STREAM, PASTURE, HAYSTACK);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
     }
-    
+    @Override
+    public String getObjectType() {
+        return "Луг";
+    }
+
 }

@@ -12,8 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class OpenWoodland extends ObjectInterest {
-     public OpenWoodland(){
-         super(TREE,RAVINE,STREAM,ELEPHANT, GIRAFFE);
-     }
-    
+
+    public OpenWoodland() {
+        super(TREE, RAVINE, STREAM, ELEPHANT, GIRAFFE);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
+    }
+    @Override
+    public String getObjectType() {
+        return "Редколесье";
+    }
+
 }

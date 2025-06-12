@@ -12,7 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Forest extends ObjectInterest {
-    public Forest(){
+
+    public Forest() {
         super(TREE, BEAR, FLOWERS, BUSH, HARE, MOOSE);
-    } 
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
+    }
+    @Override
+    public String getObjectType() {
+        return "Лес";
+    }
+
 }

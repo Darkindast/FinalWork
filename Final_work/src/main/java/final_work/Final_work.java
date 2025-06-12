@@ -23,13 +23,13 @@ public class Final_work {
         BaseRegion mildClimateRegion = new MildClimateRegion();
         mildClimateRegion.generateObjectsInterestList();
         for (Object obj : tundraRegion.getObjectsInterestList()) {
-            System.out.println("Объект интереса в ТУНДРА: " + obj);
+            System.out.println(obj.toString());
         }
         for (Object obj : desertRegion.getObjectsInterestList()) {
-            System.out.println("Объект интереса в ПУСТЫНЯ: " + obj);
+            System.out.println(obj.toString());
         }
         for (Object obj : mildClimateRegion.getObjectsInterestList()) {
-            System.out.println("Объект интереса в СМЕШАННЫЙ ЛЕС: " + obj);
+            System.out.println(obj.toString());
         }
     }
 }

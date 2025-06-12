@@ -12,7 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Mountain extends ObjectInterest {
-  public Mountain(){
-      super(CLIFF, TREE, STREAM, SNAKE, LIZARD);
-  }  
+
+    public Mountain() {
+        super(CLIFF, TREE, STREAM, SNAKE, LIZARD);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
+    }
+    @Override
+    public String getObjectType() {
+        return "Гора";
+    }
+
 }

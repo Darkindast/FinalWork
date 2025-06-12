@@ -11,10 +11,16 @@ import Region_Logic.ObjectInterest;
  *
  * @author Andrey
  */
-public class ReindeerHerdersCamp extends ObjectInterest {   
-     public ReindeerHerdersCamp(){
-         super(REINDEER,REINDEER_HERDER,TENT);
-     }
-             
-    
+public class ReindeerHerdersCamp extends ObjectInterest {
+
+    public ReindeerHerdersCamp() {
+        super(REINDEER, REINDEER_HERDER, TENT, TREE);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = false;
+    }
+    @Override
+    public String getObjectType() {
+        return "Стоянка оленеводов";
+    }
+
 }

@@ -12,7 +12,15 @@ import Region_Logic.ObjectInterest;
  * @author Andrey
  */
 public class Village extends ObjectInterest {
-    public Village(){
+
+    public Village() {
         super(HOUSE, PERSON, SHOP, CHURCH);
+        this.isFireAllowed = true;
+        this.isHouseBuildingAllowed = true;
     }
+    @Override
+    public String getObjectType() {
+        return "Деревня";
+    }
+
 }
