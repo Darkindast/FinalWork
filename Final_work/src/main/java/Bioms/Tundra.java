@@ -4,10 +4,18 @@
  */
 package Bioms;
 
+import ObjectInterest_MildCLimate.Swamp;
+import ObjectInterest_Tundra.Geyser;
+import ObjectInterest_Tundra.Glacier;
+import ObjectInterest_Tundra.OpenWoodland;
+import ObjectInterest_Tundra.ReindeerHerdersCamp;
+
 /**
  *
  * @author Andrey
  */
-public class Tundra {
-    
+public class Tundra extends Biom {
+    public Tundra(){
+        super(Glacier.class, Geyser.class, OpenWoodland.class, ReindeerHerdersCamp.class, Swamp.class);
+    }
 }

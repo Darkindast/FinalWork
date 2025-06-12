@@ -8,6 +8,6 @@ package Structure_Classes;
  *
  * @author Andrey
  */
-public class Region {
+public class FellTreeCommand {
     
 }

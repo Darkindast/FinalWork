@@ -4,10 +4,17 @@
  */
 package Bioms;
 
+import ObjectInterest_Desert.Gorge;
+import ObjectInterest_Desert.Oasis;
+import ObjectInterest_Desert.PyramidRuins;
+import ObjectInterest_Desert.Saline;
+
 /**
  *
  * @author Andrey
  */
-public class Desert {
-    
+public abstract class Desert extends Biom {
+    public Desert() {
+        super(Gorge.class, Oasis.class, PyramidRuins.class, Saline.class);
+    }
 }

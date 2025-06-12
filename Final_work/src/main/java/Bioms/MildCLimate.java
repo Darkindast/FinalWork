@@ -4,10 +4,18 @@
  */
 package Bioms;
 
+import ObjectInterest_MildCLimate.Forest;
+import ObjectInterest_MildCLimate.Meadow;
+import ObjectInterest_MildCLimate.Mountain;
+import ObjectInterest_MildCLimate.Swamp;
+import ObjectInterest_MildCLimate.Village;
+
 /**
  *
  * @author Andrey
  */
-public class MildCLimate {
-    
+public class MildClimate extends Biom {
+    public MildClimate() {
+        super(Forest.class, Meadow.class, Mountain.class, Swamp.class, Village.class);
+    }
 }

@@ -8,6 +8,6 @@ package Structure_Classes;
  *
  * @author Andrey
  */
-public class map {
+public class InsideObjectType {
     
 }
