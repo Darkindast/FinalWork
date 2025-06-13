@@ -4,10 +4,9 @@
 
 package final_work;
 
-import Regions.BaseRegion;
-import Regions.DesertRegion;
-import Regions.MildClimateRegion;
-import Regions.TundraRegion;
+import GUI.*;
+import java.io.IOException;
+
 
 /**
  *
@@ -15,7 +14,7 @@ import Regions.TundraRegion;
  */
 public class Final_work {
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        Frame frame = new Frame("Игра");
     }
 }
