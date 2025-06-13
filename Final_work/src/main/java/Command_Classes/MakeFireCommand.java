@@ -6,7 +6,7 @@ package Command_Classes;
 
 import GUI.ResourceLoader;
 import Region_Logic.*;
-import Region_Logic.Inventory;
+//import Region_Logic.Inventory;
 import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,10 +24,10 @@ public class MakeFireCommand implements Command {
     private ActionResult actionResult = new ActionResult();
 
     @Override
-    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
+    public ActionResult execute(ObjectInterest obj) {
         boolean approveStatus = obj.getFireAllowedStatus();
         String message;
-        if (approveStatus && checkResources(1, inventory)) {
+        if (approveStatus) {
             obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
             if (burnObjectInterest()) {
                 message = "Вы сожгли объект интереса в этом регионе!";
@@ -40,14 +40,10 @@ public class MakeFireCommand implements Command {
             } else {
                 message = "Вы развели костер!";
             }
-            inventory.useInventory(1);
             actionResult.setStatus(true);
         } else {
-            if (!approveStatus) {
-                message = "Развести костер тут нельзя!";
-            } else {
-                message = "У вас недостаточно ресурсов!";
-            }
+            
+            message = "Развести костер тут нельзя!";
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);

@@ -48,7 +48,25 @@ public class ResourceLoader {
             "map.jpg",
             "tundra.jpg"
         );
-        File baseFolder = new File("D:\\картинки");
+        File baseFolder = null;
+
+        JFileChooser folderChooser = new JFileChooser();
+        folderChooser.setDialogTitle("Выберите базовую папку");
+        folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        folderChooser.setAcceptAllFileFilterUsed(false);
+
+
+        while (baseFolder == null) {
+            int result = folderChooser.showOpenDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                baseFolder = folderChooser.getSelectedFile();
+                System.out.println("Выбрана папка: " + baseFolder.getAbsolutePath());
+            } else {
+                JOptionPane.showMessageDialog(null, "Папка не выбрана. Пожалуйста, выберите папку.");
+                // Цикл повторится, пока не выберут папку
+            }
+        }
 
         // Попытка загрузить все файлы из папки
         for (String fileName : requiredFiles) {
@@ -88,9 +106,9 @@ public class ResourceLoader {
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Выберите файл: " + missingFiles.get(0));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            int result = chooser.showOpenDialog(null);
+            int result2 = chooser.showOpenDialog(null);
 
-            if (result == JFileChooser.APPROVE_OPTION) {
+            if (result2 == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
                 String expectedFileName = missingFiles.get(0);
                 if (!selectedFile.getName().equalsIgnoreCase(expectedFileName)) {

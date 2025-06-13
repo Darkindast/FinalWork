@@ -4,7 +4,26 @@
  */
 package Command_Classes;
 
-import Region_Logic.Inventory;
+//import Region_Logic.Inventory;
+//import Region_Logic.ObjectInterest;
+//import java.awt.image.BufferedImage;
+//import java.io.IOException;
+//
+///**
+// *
+// * @author Andrey
+// */
+//public interface Command {
+//
+//    ActionResult execute(ObjectInterest objectInterest, Inventory inventory);
+//
+//    default boolean checkResources(int numLogs, Inventory inventory) {
+//        return (inventory.getNumLogs() >= numLogs);
+//    }
+//
+//    BufferedImage getImage() throws IOException;
+//}
+
 import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,11 +34,7 @@ import java.io.IOException;
  */
 public interface Command {
 
-    ActionResult execute(ObjectInterest objectInterest, Inventory inventory);
-
-    default boolean checkResources(int numLogs, Inventory inventory) {
-        return (inventory.getNumLogs() >= numLogs);
-    }
+    ActionResult execute(ObjectInterest objectInterest);
 
     BufferedImage getImage() throws IOException;
 }

@@ -14,7 +14,6 @@ public class ActionResult {
 
     private String message;
     private boolean status;
-    private boolean isInventoryChanged;
     private ObjectInterest placeOfAction;
     private boolean deleteObjectFromRegion = false;
 

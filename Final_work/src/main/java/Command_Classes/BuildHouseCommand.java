@@ -21,20 +21,16 @@ public class BuildHouseCommand implements Command {
     private ActionResult actionResult = new ActionResult();
 
     @Override
-    public ActionResult execute(ObjectInterest obj, Inventory inventory) {
+    public ActionResult execute(ObjectInterest obj) {
         boolean approveStatus = obj.getHouseBuildingAllowedStatus();
         String message;
-        if (approveStatus && checkResources(10, inventory)) {
+        if (approveStatus) {
             obj.addToInsideObjectsList(InsideObjectType.HOUSE);
             message = "Вы построили дом!";
-            inventory.useInventory(10);
             actionResult.setStatus(true);
         } else {
-            if (!approveStatus) {
-                message = "Построить дом в этом месте нельзя!";
-            } else {
-                message = "У вас недостаточно ресурсов!";
-            }
+            
+            message = "Построить дом в этом месте нельзя!";
             actionResult.setStatus(false);
         }
         actionResult.setMessage(message);

@@ -14,32 +14,35 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private Inventory inventory;
+//    private Inventory inventory;
     private ArrayList<ActionResult> actionHistory;
     private BaseRegion currentRegion;
 
     public Player() {
-        this.inventory = new Inventory(0);
+//        this.inventory = new Inventory(0);
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
+//    public Inventory getInventory() {
+//        return inventory;
+//    }
 
     public ArrayList<ActionResult> getActionList() {
         return actionHistory;
     }
 
-    public void setInventory(Inventory invent) {
-        this.inventory = invent;
-    }
+//    public void setInventory(Inventory invent) {
+//        this.inventory = invent;
+//    }
 
     public void setActionList(ArrayList<ActionResult> history) {
         this.actionHistory = history;
     }
 
+//    public ActionResult makeAction(ObjectInterest obj, Command action) {
+//        return action.execute(obj, inventory);
+//    }
     public ActionResult makeAction(ObjectInterest obj, Command action) {
-        return action.execute(obj, inventory);
+        return action.execute(obj);
     }
 
     public void setCurrentRegion(BaseRegion region) {
