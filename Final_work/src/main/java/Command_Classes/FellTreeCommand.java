@@ -4,6 +4,7 @@
  */
 package Command_Classes;
 
+import GUI.ResourceLoader;
 import Region_Logic.ObjectInterest;
 import Region_Logic.*;
 import java.awt.image.BufferedImage;
@@ -44,7 +45,7 @@ public class FellTreeCommand implements Command {
 
     @Override
     public BufferedImage getImage() throws IOException {
-        return ImageIO.read(new File("src\\main\\resources\\fellTree.png"));
+        return ResourceLoader.getInstance().getImage("fellTree.png");
     }
 
 }

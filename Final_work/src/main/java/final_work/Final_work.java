@@ -15,6 +15,6 @@ import java.io.IOException;
 public class Final_work {
 
     public static void main(String[] args) throws IOException {
-        Frame frame = new Frame("Игра");
+        Frame frame = new Frame("MineCraft");
     }
 }

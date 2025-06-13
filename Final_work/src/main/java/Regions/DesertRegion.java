@@ -5,6 +5,7 @@
 package Regions;
 
 import Bioms.Desert;
+import GUI.ResourceLoader;
 import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -55,8 +56,7 @@ public class DesertRegion extends BaseRegion {
     }
 
     @Override
-    public BufferedImage getImage() throws IOException {
-        return ImageIO.read(new File("src\\main\\resources\\desert.jpg"));
-
+    public BufferedImage getImage() {
+        return ResourceLoader.getInstance().getImage("desert.jpg");
     }
 }

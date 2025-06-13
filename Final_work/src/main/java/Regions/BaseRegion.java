@@ -36,10 +36,10 @@ public abstract class BaseRegion {
 
         for (int i = 0; i < numOfClasses; i++) {
             int randomIndex = random.nextInt(size);
-            Class<? extends ObjectInterest> clazz = possibleObjectsInterestList.get(randomIndex);
+            Class<? extends ObjectInterest> classs = possibleObjectsInterestList.get(randomIndex);
             try {
-                ObjectInterest obj = clazz.getDeclaredConstructor().newInstance();
-                objectsInterestList.add(clazz.getDeclaredConstructor().newInstance());
+                ObjectInterest obj = classs.getDeclaredConstructor().newInstance();
+                objectsInterestList.add(classs.getDeclaredConstructor().newInstance());
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
                 ex.getStackTrace();
             }

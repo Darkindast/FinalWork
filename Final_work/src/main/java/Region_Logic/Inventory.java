@@ -4,6 +4,7 @@
  */
 package Region_Logic;
 
+import GUI.ResourceLoader;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class Inventory {
     }
 
     public BufferedImage getImage() throws IOException {
-        return ImageIO.read(new File("src\\main\\resources\\inventory.jpg"));
+        return ResourceLoader.getInstance().getImage("inventory.jpg");
     }
 
 }

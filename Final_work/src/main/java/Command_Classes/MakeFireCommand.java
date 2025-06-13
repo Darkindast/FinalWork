@@ -4,6 +4,7 @@
  */
 package Command_Classes;
 
+import GUI.ResourceLoader;
 import Region_Logic.*;
 import Region_Logic.Inventory;
 import Region_Logic.ObjectInterest;
@@ -29,12 +30,13 @@ public class MakeFireCommand implements Command {
         if (approveStatus && checkResources(1, inventory)) {
             obj.addToInsideObjectsList(InsideObjectType.BONFIRE);
             if (burnObjectInterest()) {
-                message = "Вы развели костер и сожгли объект интереса в этом регионе!";
+                message = "Вы сожгли объект интереса в этом регионе!";
                 obj.setAliveStatus(false);
+                
                 for (InsideObjectType insideObj : new ArrayList<>(obj.getInsideObjects())) {
                     obj.removeFromInsideObjectsList(insideObj);
-   }
-
+                }
+                actionResult.setDeleteObjectFromRegion(true);
             } else {
                 message = "Вы развели костер!";
             }
@@ -59,12 +61,12 @@ public class MakeFireCommand implements Command {
 
     public boolean burnObjectInterest() {
         Random random = new Random();
-        double probability = 0.01;
+        double probability = 1;
         return (random.nextDouble() <= probability);
     }
 
     @Override
     public BufferedImage getImage() throws IOException {
-        return ImageIO.read(new File("src\\main\\resources\\fire.jpg"));
+        return ResourceLoader.getInstance().getImage("fire.jpg");
     }
 }

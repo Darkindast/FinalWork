@@ -5,6 +5,7 @@
 package Regions;
 
 import Bioms.Tundra;
+import GUI.ResourceLoader;
 import Region_Logic.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -56,6 +57,6 @@ public class TundraRegion extends BaseRegion {
 
     @Override
     public BufferedImage getImage() throws IOException {
-        return ImageIO.read(new File("src\\main\\resources\\tundra.jpg"));
+        return ResourceLoader.getInstance().getImage("tundra.jpg");
     }
 }

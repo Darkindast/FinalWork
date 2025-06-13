@@ -15,9 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -37,6 +42,7 @@ import org.jgrapht.graph.DefaultEdge;
 public class Panel extends JPanel {
 
     private BufferedImage image;
+    private Map<String, BufferedImage> loadedImages = new HashMap<>();
     JButton startGame = new JButton("Начать игру");
     JLabel mainLabelPanel2;
     JLabel labelTundra;
@@ -53,11 +59,10 @@ public class Panel extends JPanel {
 
     public Panel(JFrame frame) throws IOException {
         this.currentFrame = frame;
-        try {
-            image = ImageIO.read(new File("src\\main\\resources\\background.png"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        ResourceLoader.getInstance().loadRequiredResourcesFromFolder();
+        image = ResourceLoader.getInstance().getImage("background.png");
+
+        
         startGame.setBackground(Color.getHSBColor(63, 224, 208));
         startGame.setPreferredSize(new Dimension(300, 100));
         startGame.setFont(new Font("Arial", Font.BOLD, 18));
@@ -157,12 +162,13 @@ public class Panel extends JPanel {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     player.setCurrentRegion(regionManager.getRegion(0));
-                    try {
-                        MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+//                    try {
+//                        MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+                        WorldMapFrame frame = new WorldMapFrame("Карта мира", regionManager, player);
                         currentFrame.dispose();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null);
+//                    }
                 }
             }
         }

@@ -8,6 +8,8 @@ package GUI;
  *
  * @author Andrey
  */
+import Command_Classes.ActionResult;
+import Command_Classes.Command;
 import Region_Logic.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -46,7 +48,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.tree.TreeModel;
+
 
 
 public class MainGamePanel extends JPanel {
@@ -177,40 +179,91 @@ public class MainGamePanel extends JPanel {
 
     }
 
-    public class chooseActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String actionName = "";
-            ArrayList<JRadioButton> buttons = new ArrayList<>();
-            JRadioButton houseB = new JRadioButton("Построить дом");
-            JRadioButton treeB = new JRadioButton("Срубить дерево");
-            JRadioButton fireB = new JRadioButton("Развести костер");
-            buttons.add(houseB);
-            buttons.add(treeB);
-            buttons.add(fireB);
-            JPanel panel = new JPanel();
-            panel.add(houseB);
-            panel.add(treeB);
-            panel.add(fireB);
-            panel.setBackground(Color.ORANGE);
-            JTextArea area = new JTextArea();
-            panel.add(new JTextArea());
-            JOptionPane.showMessageDialog(null, panel, null, JOptionPane.PLAIN_MESSAGE);
-            for (JRadioButton button : buttons) {
-                if (button.isSelected()) {
-                    actionName = button.getText();
-                }
-            }
-            try {
-                ResultPanel panelResult = new ResultPanel(player, actionName, list.getSelectedIndex(), manager);
-                JOptionPane.showMessageDialog(null, panelResult, null, JOptionPane.PLAIN_MESSAGE);
-            } catch (NullPointerException ex) {
-                JOptionPane.showMessageDialog(null, "Действие не выбрано!", null, JOptionPane.PLAIN_MESSAGE);
+//    public class chooseActionListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            String actionName = "";
+//            ArrayList<JRadioButton> buttons = new ArrayList<>();
+//            JRadioButton houseB = new JRadioButton("Построить дом");
+//            JRadioButton treeB = new JRadioButton("Срубить дерево");
+//            JRadioButton fireB = new JRadioButton("Развести костер");
+//            buttons.add(houseB);
+//            buttons.add(treeB);
+//            buttons.add(fireB);
+//            JPanel panel = new JPanel();
+//            panel.add(houseB);
+//            panel.add(treeB);
+//            panel.add(fireB);
+//            panel.setBackground(Color.ORANGE);
+//            JTextArea area = new JTextArea();
+//            panel.add(new JTextArea());
+//            JOptionPane.showMessageDialog(null, panel, null, JOptionPane.PLAIN_MESSAGE);
+//            for (JRadioButton button : buttons) {
+//                if (button.isSelected()) {
+//                    actionName = button.getText();
+//                }
+//            }
+//            try {
+//                ResultPanel panelResult = new ResultPanel(player, actionName, list.getSelectedIndex(), manager);
+//                JOptionPane.showMessageDialog(null, panelResult, null, JOptionPane.PLAIN_MESSAGE);
+//            } catch (NullPointerException ex) {
+//                JOptionPane.showMessageDialog(null, "Действие не выбрано!", null, JOptionPane.PLAIN_MESSAGE);
+//            }
+//        }
+//    }
+public class chooseActionListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String actionName = "";
+        ArrayList<JRadioButton> buttons = new ArrayList<>();
+        JRadioButton houseB = new JRadioButton("Построить дом");
+        JRadioButton treeB = new JRadioButton("Срубить дерево");
+        JRadioButton fireB = new JRadioButton("Развести костер");
+        buttons.add(houseB);
+        buttons.add(treeB);
+        buttons.add(fireB);
+        
+        JPanel panel = new JPanel();
+        panel.add(houseB);
+        panel.add(treeB);
+        panel.add(fireB);
+        panel.setBackground(Color.ORANGE);
+        
+        JOptionPane.showMessageDialog(null, panel, "Выберите действие", JOptionPane.PLAIN_MESSAGE);
+        
+        for (JRadioButton button : buttons) {
+            if (button.isSelected()) {
+                actionName = button.getText();
+                break;
             }
         }
-    }
 
+        try {
+            int selectedIndex = list.getSelectedIndex();
+            ObjectInterest selectedObj = player.getCurrentRegion().getObjectsInterestList().get(selectedIndex);
+            Command action = manager.getCommandList().get(actionName);
+            
+
+            ActionResult result = player.makeAction(selectedObj, action);
+            
+            // Обрабатываем результат
+            if (result.isDeleteObjectFromRegion()) {
+                player.getCurrentRegion().getObjectsInterestList().remove(selectedIndex);
+                makeList(); // Обновляем список объектов
+            }
+            
+            // Создаем панель результата с готовым результатом
+            ResultPanel panelResult = new ResultPanel(result, actionName, manager);
+            JOptionPane.showMessageDialog(null, panelResult, "Результат действия", JOptionPane.PLAIN_MESSAGE);
+            
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Действие не выбрано!", "Ошибка", JOptionPane.WARNING_MESSAGE);
+        } catch (IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Объект не выбран!", "Ошибка", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+}
     public class mapListener implements ActionListener {
 
         @Override

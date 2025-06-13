@@ -16,6 +16,7 @@ public class ActionResult {
     private boolean status;
     private boolean isInventoryChanged;
     private ObjectInterest placeOfAction;
+    private boolean deleteObjectFromRegion = false;
 
     public void setMessage(String message) {
         this.message = message;
@@ -43,5 +44,13 @@ public class ActionResult {
 
     public String getCompleteResult() {
         return message + " в объекте интереса " + placeOfAction.getObjectType();
+    }
+    
+        public boolean isDeleteObjectFromRegion() {
+        return deleteObjectFromRegion;
+    }
+
+    public void setDeleteObjectFromRegion(boolean deleteObjectFromRegion) {
+        this.deleteObjectFromRegion = deleteObjectFromRegion;
     }
 }
