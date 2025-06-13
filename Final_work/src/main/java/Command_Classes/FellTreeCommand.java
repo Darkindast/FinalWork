@@ -45,7 +45,7 @@ public class FellTreeCommand implements Command {
 
     @Override
     public BufferedImage getImage() throws IOException {
-        return ResourceLoader.getInstance().getImage("fellTree.png");
+        return ResourceLoader.getInstance().getImage("fellTree.jpg");
     }
 
 }

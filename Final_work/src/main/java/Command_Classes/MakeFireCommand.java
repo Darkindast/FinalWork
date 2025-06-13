@@ -61,7 +61,7 @@ public class MakeFireCommand implements Command {
 
     public boolean burnObjectInterest() {
         Random random = new Random();
-        double probability = 1;
+        double probability = 0.1;
         return (random.nextDouble() <= probability);
     }
 

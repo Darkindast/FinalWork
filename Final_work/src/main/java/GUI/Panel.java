@@ -6,9 +6,7 @@ package GUI;
 
 import Region_Logic.*;
 
-import com.mxgraph.layout.mxCircleLayout;
-import com.mxgraph.layout.mxIGraphLayout;
-import com.mxgraph.util.mxCellRenderer;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,10 +26,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-import org.jgrapht.Graph;
-import org.jgrapht.ext.JGraphXAdapter;
-import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 
 
 /*
@@ -43,8 +37,8 @@ public class Panel extends JPanel {
 
     private BufferedImage image;
     private Map<String, BufferedImage> loadedImages = new HashMap<>();
-    JButton startGame = new JButton("Начать игру");
-    JLabel mainLabelPanel2;
+
+    JLabel mainLabelPanel;
     JLabel labelTundra;
     JLabel labelDesert;
     JLabel labelMildClimate;
@@ -62,46 +56,80 @@ public class Panel extends JPanel {
         ResourceLoader.getInstance().loadRequiredResourcesFromFolder();
         image = ResourceLoader.getInstance().getImage("background.png");
 
-        
-        startGame.setBackground(Color.getHSBColor(63, 224, 208));
-        startGame.setPreferredSize(new Dimension(300, 100));
-        startGame.setFont(new Font("Arial", Font.BOLD, 18));
-        startGame.addActionListener(new startGameListener());
-        add(startGame);
-    }
+        mainLabelPanel = new JLabel("Добавьте регионы в свой мир!", SwingConstants.CENTER);
+        labelTundra = new JLabel("Тундра");
+        labelDesert = new JLabel("Пустыня");
+        labelMildClimate = new JLabel("Смешанный Лес");
 
+        countTundra = new TextField();
+        countDesert = new TextField();
+        countMildClimate = new TextField();
+
+        goButton = new JButton("Новая игра");
+        goButton.addActionListener(new goButtonListener());
+
+        // Настройка стилей
+        setupMinecraftStyles();
+
+        setLayout(new GridBagLayout());
+        addComponents();
+
+ 
+    }
+    private Font getMinecraftFont(float size) {
+        try {
+            return Font.createFont(Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/Minecraft.ttf")).deriveFont(size);
+        } catch (Exception e) {
+            return new Font("Monospaced", Font.BOLD, (int)size); // Fallback
+        }
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
     }
 
-    public class startGameListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            removeAll();
-            revalidate();
-            repaint();
-            mainLabelPanel2 = new JLabel("Добавьте регионы в свой мир!");
-            labelTundra = new JLabel("Бескрайняя Тундра");
-            labelDesert = new JLabel("Знойная Пустыня");
-            labelMildClimate = new JLabel("Дремучий Смешанный Лес");
-            countTundra = new TextField();
-            countDesert = new TextField();
-            countMildClimate = new TextField();
-            goButton = new JButton("Погнали к приключениям!");
-            goButton.addActionListener(new goButtonListener());
-            countTundra.setBackground(Color.ORANGE);
-            countDesert.setBackground(Color.ORANGE);
-            countMildClimate.setBackground(Color.ORANGE);
-            setLayout(new GridBagLayout());
-            addComponentsPanel2();
-
+    private void changeLabels(JLabel label) {
+        try {
+            Font minecraftFont = Font.createFont(Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/Minecraft.ttf")).deriveFont(20f);
+            label.setFont(minecraftFont);
+        } catch (Exception e) {
+            label.setFont(new Font("Monospaced", Font.BOLD, 20)); // Fallback шрифт
         }
+        label.setOpaque(true);
+        label.setForeground(Color.WHITE);
+        label.setBackground(new Color(130, 130, 130)); 
+        Border border = BorderFactory.createLineBorder(new Color(143, 119, 72), 3); // Коричневая граница
+        label.setBorder(border);
     }
 
-    private void addComponentsPanel2() {
+ 
+
+    private void setupMinecraftStyles() {
+        // Фон панели
+        setBackground(new Color(32, 32, 32));
+        
+        // Стиль для текстовых полей
+       for (TextField field : new TextField[]{countTundra, countDesert, countMildClimate}) {
+            field.setBackground(new Color(64, 64, 64));
+            field.setForeground(Color.WHITE);
+            field.setFont(new Font("Monospaced", Font.PLAIN, 14));
+}
+        
+        // Стиль для кнопки
+        goButton.setBackground(new Color(130, 130, 130));
+        goButton.setForeground(Color.WHITE);
+        goButton.setFont(new Font("Monospaced", Font.BOLD, 20));
+        goButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        goButton.setFocusPainted(false);
+
+        mainLabelPanel.setFont(new Font("Monospaced", Font.BOLD, 24));
+        mainLabelPanel.setForeground(new Color(130, 130, 130)); // Золотой цвет
+    }
+
+private void addComponents() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 20, 20, 20);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -117,9 +145,9 @@ public class Panel extends JPanel {
         add(labelMildClimate, gbc);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        mainLabelPanel2.setFont(new Font("Arial", Font.BOLD, 30));
-        mainLabelPanel2.setForeground(Color.white);
-        add(mainLabelPanel2, gbc);
+        mainLabelPanel.setFont(new Font("Monospaced", Font.BOLD, 30));
+        mainLabelPanel.setForeground(Color.white);
+        add(mainLabelPanel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 3;
         add(countTundra, gbc);
@@ -129,20 +157,11 @@ public class Panel extends JPanel {
         add(countMildClimate, gbc);
         gbc.gridx = 0;
         gbc.gridy++;
-        goButton.setForeground(Color.white);
-        goButton.setFont(new Font("Arial", Font.BOLD, 15));
-        goButton.setBackground(Color.ORANGE);
+//        goButton.setForeground(Color.white);
+//        goButton.setFont(new Font("Arial", Font.BOLD, 15));
+//        goButton.setBackground(new Color(130, 130, 130));
         add(goButton, gbc);
 
-    }
-
-    private void changeLabels(JLabel label) {
-        label.setFont(new Font("Arial", Font.BOLD, 20));
-        label.setOpaque(true);
-        label.setForeground(Color.white);
-        label.setBackground(new Color(238, 130, 238));
-        Border border = BorderFactory.createLineBorder(Color.ORANGE, 4);
-        label.setBorder(border);
     }
 
     public class goButtonListener implements ActionListener {

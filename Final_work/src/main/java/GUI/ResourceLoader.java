@@ -40,11 +40,12 @@ public class ResourceLoader {
         List<String> requiredFiles = Arrays.asList(
             "background.png",
             "desert.jpg",
-            "fellTree.png",
+            "fellTree.jpg",
             "fire.jpg",
-            "house.png",
+            "house.jpg",
             "inventory.jpg",
             "mildClimate.jpg",
+            "map.jpg",
             "tundra.jpg"
         );
         File baseFolder = new File("D:\\картинки");

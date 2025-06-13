@@ -48,7 +48,7 @@ public class BuildHouseCommand implements Command {
 
     @Override
     public BufferedImage getImage() throws IOException {
-        return ResourceLoader.getInstance().getImage("house.png");
+        return ResourceLoader.getInstance().getImage("house.jpg");
     }
 
 }
