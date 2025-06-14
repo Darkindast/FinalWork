@@ -10,32 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
-import java.io.IOException;
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-/**
- *
- * @author Andrey
- */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.*;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.*;
-import java.util.logging.*;
 
 public class WorldMapPanel extends JPanel {
    
@@ -75,19 +56,15 @@ public class WorldMapPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // 1. Сначала рисуем фоновое изображение (если оно есть)
+       
         if (image != null) {
             g2d.drawImage(image, 0, 0, getWidth(), getHeight(), this);
         }
 
-        // 2. Затем рисуем полупрозрачный затемняющий слой
-//        g2d.setColor(new Color(20, 20, 20, 0)); // Последний параметр - прозрачность (0-255)
-//        g2d.fillRect(0, 0, getWidth(), getHeight());
-    
         int centerX = getWidth() / 2;
         int centerY = getHeight() / 2;
         
-        // Рисуем декоративные элементы
+     
         drawCompass(g2d, centerX, centerY);
         
         ArrayList<BaseRegion> availableRegions = regionManager.checkAvailableRegions(player.getCurrentRegion());
@@ -95,36 +72,36 @@ public class WorldMapPanel extends JPanel {
         
         regionShapes.clear();
         
-        // Располагаем регионы по кругу
+       
         double angleStep = 2 * Math.PI / allRegions.size();
-        double currentAngle = -Math.PI / 2; // Начинаем сверху
+        double currentAngle = -Math.PI / 2; 
         
         for (BaseRegion region : allRegions) {
-            // Вычисляем позицию региона на окружности
+          
             int x = centerX + (int)(CIRCLE_RADIUS * Math.cos(currentAngle)) - REGION_SIZE/2;
             int y = centerY + (int)(CIRCLE_RADIUS * Math.sin(currentAngle)) - REGION_SIZE/2;
             
-            // Создаем форму региона (квадрат с закругленными углами)
+          
             RoundRectangle2D regionRect = new RoundRectangle2D.Double(
                 x, y, REGION_SIZE, REGION_SIZE, 10, 10);
             
-            // Выбираем цвет региона
+     
 //            if (region.equals(player.getCurrentRegion())) {
-//                g2d.setColor(new Color(255, 70, 70)); // Красный для текущего региона
+//                g2d.setColor(new Color(255, 70, 70));
 //            } else if (availableRegions.contains(region)) {
-//                g2d.setColor(new Color(100, 255, 100)); // Зеленый для доступных
+//                g2d.setColor(new Color(100, 255, 100));
 //            } else {
-//                g2d.setColor(new Color(100, 100, 100)); // Серый для недоступных
+//                g2d.setColor(new Color(100, 100, 100)); 
 //            }
             g2d.setColor(new Color(100, 100, 100));
             g2d.fill(regionRect);
             
-            // Рамка региона
+            
             g2d.setColor(new Color(20, 20, 20));
             g2d.setStroke(new BasicStroke(2));
             g2d.draw(regionRect);
             
-            // Название региона
+          
             g2d.setColor(Color.WHITE);
             drawCenteredString(g2d, region.getUniqueName(), x + REGION_SIZE/2, y + REGION_SIZE/2);
             
@@ -132,7 +109,7 @@ public class WorldMapPanel extends JPanel {
             currentAngle += angleStep;
         }
         
-        // Рисуем линии соединений между доступными регионами
+        
 //        drawConnections(g2d, centerX, centerY, availableRegions);
     }
 
@@ -142,8 +119,7 @@ public class WorldMapPanel extends JPanel {
         g2d.drawOval(centerX - CIRCLE_RADIUS, centerY - CIRCLE_RADIUS, 
                      CIRCLE_RADIUS*2, CIRCLE_RADIUS*2);
         
-        // Буквы сторон света
-        g2d.setFont(new Font("Minecraft", Font.BOLD, 20));
+      
     }
 
     private void drawConnections(Graphics2D g2d, int centerX, int centerY, 
@@ -162,7 +138,7 @@ public class WorldMapPanel extends JPanel {
                 Shape targetShape = regionShapes.get(region);
                 Point2D targetCenter = getCenter(targetShape);
                 
-//                // Рисуем пунктирную линию
+
 //                Stroke dashed = new BasicStroke(1.5f, BasicStroke.CAP_BUTT, 
 //                    BasicStroke.JOIN_BEVEL, 0, new float[]{5}, 0);
 //                g2d.setStroke(dashed);

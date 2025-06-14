@@ -28,10 +28,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 public class Panel extends JPanel {
 
@@ -68,7 +65,7 @@ public class Panel extends JPanel {
         goButton = new JButton("Новая игра");
         goButton.addActionListener(new goButtonListener());
 
-        // Настройка стилей
+       
         setupMinecraftStyles();
 
         setLayout(new GridBagLayout());
@@ -81,7 +78,7 @@ public class Panel extends JPanel {
             return Font.createFont(Font.TRUETYPE_FONT,
                     getClass().getResourceAsStream("/Minecraft.ttf")).deriveFont(size);
         } catch (Exception e) {
-            return new Font("Monospaced", Font.BOLD, (int)size); // Fallback
+            return new Font("Monospaced", Font.BOLD, (int)size); 
         }
     }
     @Override
@@ -96,29 +93,29 @@ public class Panel extends JPanel {
                     getClass().getResourceAsStream("/Minecraft.ttf")).deriveFont(20f);
             label.setFont(minecraftFont);
         } catch (Exception e) {
-            label.setFont(new Font("Monospaced", Font.BOLD, 20)); // Fallback шрифт
+            label.setFont(new Font("Monospaced", Font.BOLD, 20)); 
         }
         label.setOpaque(true);
         label.setForeground(Color.WHITE);
         label.setBackground(new Color(130, 130, 130)); 
-        Border border = BorderFactory.createLineBorder(new Color(143, 119, 72), 3); // Коричневая граница
+        Border border = BorderFactory.createLineBorder(new Color(143, 119, 72), 3); 
         label.setBorder(border);
     }
 
  
 
     private void setupMinecraftStyles() {
-        // Фон панели
+        
         setBackground(new Color(32, 32, 32));
         
-        // Стиль для текстовых полей
+       
        for (TextField field : new TextField[]{countTundra, countDesert, countMildClimate}) {
             field.setBackground(new Color(64, 64, 64));
             field.setForeground(Color.WHITE);
             field.setFont(new Font("Monospaced", Font.PLAIN, 14));
 }
         
-        // Стиль для кнопки
+   
         goButton.setBackground(new Color(130, 130, 130));
         goButton.setForeground(Color.WHITE);
         goButton.setFont(new Font("Monospaced", Font.BOLD, 20));
@@ -157,9 +154,6 @@ private void addComponents() {
         add(countMildClimate, gbc);
         gbc.gridx = 0;
         gbc.gridy++;
-//        goButton.setForeground(Color.white);
-//        goButton.setFont(new Font("Arial", Font.BOLD, 15));
-//        goButton.setBackground(new Color(130, 130, 130));
         add(goButton, gbc);
 
     }
@@ -181,13 +175,10 @@ private void addComponents() {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     player.setCurrentRegion(regionManager.getRegion(0));
-//                    try {
-//                        MainGameFrame frame = new MainGameFrame("Главное меню", commandManager, player, regionManager);
+                      
                         WorldMapFrame frame = new WorldMapFrame("Карта мира", regionManager, player);
                         currentFrame.dispose();
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null);
-//                    }
+
                 }
             }
         }

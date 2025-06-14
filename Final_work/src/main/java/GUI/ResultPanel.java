@@ -20,11 +20,7 @@ import javax.swing.JTextArea;
  */
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -34,21 +30,21 @@ public class ResultPanel extends JPanel {
     private JScrollPane scrollPane;
 
     public ResultPanel(ActionResult result, String actionName, CommandManager manager) {
-        setLayout(new BorderLayout()); // Устанавливаем BorderLayout для основного размещения
+        setLayout(new BorderLayout()); 
         
         try {
             this.image = manager.getCommandList().get(actionName).getImage();
-            // Устанавливаем размер для изображения (половина от оригинального)
+      
             int imgWidth = image.getWidth() / 2;
             int imgHeight = image.getHeight() / 2;
             
-            // Настройка текстовой области
+         
             area.setText(result.getCompleteResult());
             area.setEditable(false);
             area.setLineWrap(true);
             area.setWrapStyleWord(true);
             
-            // Шрифт и цвета
+            
             try {
                 Font minecraftFont = Font.createFont(Font.TRUETYPE_FONT, 
                     getClass().getResourceAsStream("/Minecraft.ttf")).deriveFont(14f);
@@ -57,11 +53,11 @@ public class ResultPanel extends JPanel {
                 area.setFont(new Font("Monospaced", Font.PLAIN, 14));
             }
             
-            area.setForeground(new Color(0xE0E0E0)); // Светло-серый текст
-            area.setBackground(new Color(0x1A1A1A)); // Темный фон
+            area.setForeground(new Color(0xE0E0E0)); 
+            area.setBackground(new Color(0x1A1A1A)); 
             area.setCaretColor(Color.WHITE);
             
-            // Создаем панель для изображения с фиксированным размером
+            
             JPanel imagePanel = new JPanel() {
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -77,20 +73,18 @@ public class ResultPanel extends JPanel {
             };
             imagePanel.setPreferredSize(new Dimension(imgWidth, imgHeight));
             
-            // Добавляем скролл для текста
-            scrollPane = new JScrollPane(area);
-            scrollPane.setPreferredSize(new Dimension(imgWidth, 50)); // Фиксированная высота для текста
             
-            // Добавляем компоненты в основную панель
+            scrollPane = new JScrollPane(area);
+            scrollPane.setPreferredSize(new Dimension(imgWidth, 50)); 
+
             add(imagePanel, BorderLayout.NORTH);
             add(scrollPane, BorderLayout.CENTER);
-            
-            // Общий предпочтительный размер
+
             setPreferredSize(new Dimension(imgWidth, imgHeight + 50));
             
         } catch (IOException ex) {
             ex.printStackTrace();
-            // Если изображение не загрузилось, показываем только текст
+         
             add(new JScrollPane(area), BorderLayout.CENTER);
         }
     }

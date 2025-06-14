@@ -6,14 +6,12 @@ package Command_Classes;
 
 import GUI.ResourceLoader;
 import Region_Logic.*;
-//import Region_Logic.Inventory;
 import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -38,11 +36,12 @@ public class MakeFireCommand implements Command {
                 }
                 actionResult.setDeleteObjectFromRegion(true);
             } else {
+                actionResult.setDeleteObjectFromRegion(false);
                 message = "Вы развели костер!";
             }
             actionResult.setStatus(true);
         } else {
-            
+            actionResult.setDeleteObjectFromRegion(false);
             message = "Развести костер тут нельзя!";
             actionResult.setStatus(false);
         }

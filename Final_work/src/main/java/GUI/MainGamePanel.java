@@ -19,10 +19,8 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-
 import java.awt.Insets;
 import java.awt.RenderingHints;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,13 +28,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.BorderFactory;
-
 import javax.swing.DefaultListModel;
-
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -46,7 +40,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -56,20 +49,16 @@ public class MainGamePanel extends JPanel {
 
     private BufferedImage image;
     private JButton map;
-//    private JButton inventory = new JButton("Инвентарь");
-    List<String> namesOI;
     CommandManager manager;
     RegionManager regionManager;
     Player player;
     JList<String> list = new JList();
     JTextArea area = new JTextArea();
-
     JLabel label;
     JButton chooseAction;
     JScrollPane scrollPane = new JScrollPane();
     boolean showChoiceButton = false;
     JButton showTree;
-    JButton showGraph;
     JFrame currentFrame;
 
     public MainGamePanel(CommandManager manager, Player player, RegionManager regionManager, JFrame frame) throws IOException {
@@ -117,7 +106,7 @@ public class MainGamePanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 area.setText(list.getSelectedValue());
-                System.out.println(list.getSelectedIndex());
+//                System.out.println(list.getSelectedIndex());
             }
         });
     }
@@ -138,28 +127,27 @@ private void addButtons() {
     repaint();
     setLayout(new GridBagLayout());
     GridBagConstraints gbc = new GridBagConstraints();
-    
-    // Настройки Minecraft-стиля
-    Font minecraftFont = new Font("Minecraft", Font.PLAIN, 12); // Шрифт Minecraft
-    Color buttonColor = new Color(135, 109, 80); // Цвет деревянной доски
+
+    Font minecraftFont = new Font("Minecraft", Font.PLAIN, 12); 
+    Color buttonColor = new Color(135, 109, 80); 
     Color textColor = Color.WHITE;
-    Color borderColor = new Color(58, 47, 34); // Темная рамка
+    Color borderColor = new Color(58, 47, 34);
     
-    // Настройки по умолчанию
+
     gbc.insets = new Insets(4, 4, 4, 4);
     gbc.anchor = GridBagConstraints.NORTHWEST;
     gbc.fill = GridBagConstraints.NONE;
 
-    // 1. Заголовок региона в стиле Minecraft
+ 
     gbc.gridx = 0;
     gbc.gridy = 0;
     gbc.gridwidth = 3;
     label = new JLabel(player.getCurrentRegion().getUniqueName());
     label.setFont(minecraftFont.deriveFont(Font.BOLD, 18f));
-    label.setForeground(new Color(255, 150, 0)); // Золотой цвет
+    label.setForeground(new Color(255, 150, 0)); 
     add(label, gbc);
 
-    // 2. Список ОИ с Minecraft-стилем
+
     gbc.gridx = 0;
     gbc.gridy = 1;
     gbc.gridwidth = 1;
@@ -175,7 +163,7 @@ private void addButtons() {
     list.setFixedCellWidth(120);
     list.setFixedCellHeight(20);
     list.setFont(minecraftFont);
-    list.setBackground(new Color(70, 70, 70)); // Темный фон
+    list.setBackground(new Color(70, 70, 70)); 
     list.setForeground(textColor);
     list.setSelectionBackground(new Color(114, 114, 114));
     
@@ -190,11 +178,11 @@ private void addButtons() {
 
   
 
-    Dimension buttonSize = new Dimension(140, 30); // Размер кнопок
+    Dimension buttonSize = new Dimension(140, 30); 
 
     JPanel rightButtonsPanel = new JPanel();
-    rightButtonsPanel.setLayout(new GridLayout(3, 1, 0, 10)); // 3 строки, 10px вертикальный отступ
-    rightButtonsPanel.setOpaque(false); // Прозрачный фон, чтобы фон main-панели был виден
+    rightButtonsPanel.setLayout(new GridLayout(3, 1, 0, 10)); 
+    rightButtonsPanel.setOpaque(false); 
 
     map = createMinecraftButton("Карта мира", buttonSize, minecraftFont);
     map.addActionListener(new mapListener());
@@ -213,94 +201,59 @@ private void addButtons() {
     gbc.anchor = GridBagConstraints.NORTHWEST;
     gbc.fill = GridBagConstraints.NONE;
     add(rightButtonsPanel, gbc);
-    // Фон панели
-    setBackground(new Color(32, 32, 32)); // Темно-серый фон
-    
-
+  
+    setBackground(new Color(32, 32, 32)); 
 }
 
-// Метод для создания кнопок в стиле Minecraft
 private JButton createMinecraftButton(String text, Dimension size, Font font) {
     JButton button = new JButton(text);
     button.setPreferredSize(size);
     button.setFont(font);
     button.setForeground(Color.WHITE);
-    button.setBackground(new Color(135, 109, 80)); // Цвет деревянной доски
+    button.setBackground(new Color(135, 109, 80));
     button.setBorder(BorderFactory.createCompoundBorder(
-     BorderFactory.createLineBorder(new Color(58, 47, 34)), // Темная рамка
-     BorderFactory.createEmptyBorder(2, 10, 2, 10)           // Отступы
+     BorderFactory.createLineBorder(new Color(58, 47, 34)), 
+     BorderFactory.createEmptyBorder(2, 10, 2, 10)         
  ));
     button.setFocusPainted(false);
     button.setContentAreaFilled(false);
     button.setOpaque(true);
     
-    // Эффект при наведении
+
     button.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseEntered(MouseEvent e) {
-            button.setBackground(new Color(156, 126, 93)); // Светлее при наведении
+            button.setBackground(new Color(156, 126, 93)); 
         }
         
         @Override
         public void mouseExited(MouseEvent e) {
-            button.setBackground(new Color(135, 109, 80)); // Возвращаем стандартный цвет
+            button.setBackground(new Color(135, 109, 80)); 
         }
     });
     
     return button;
 }
-//    public class chooseActionListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            String actionName = "";
-//            ArrayList<JRadioButton> buttons = new ArrayList<>();
-//            JRadioButton houseB = new JRadioButton("Построить дом");
-//            JRadioButton treeB = new JRadioButton("Срубить дерево");
-//            JRadioButton fireB = new JRadioButton("Развести костер");
-//            buttons.add(houseB);
-//            buttons.add(treeB);
-//            buttons.add(fireB);
-//            JPanel panel = new JPanel();
-//            panel.add(houseB);
-//            panel.add(treeB);
-//            panel.add(fireB);
-//            panel.setBackground(Color.ORANGE);
-//            JTextArea area = new JTextArea();
-//            panel.add(new JTextArea());
-//            JOptionPane.showMessageDialog(null, panel, null, JOptionPane.PLAIN_MESSAGE);
-//            for (JRadioButton button : buttons) {
-//                if (button.isSelected()) {
-//                    actionName = button.getText();
-//                }
-//            }
-//            try {
-//                ResultPanel panelResult = new ResultPanel(player, actionName, list.getSelectedIndex(), manager);
-//                JOptionPane.showMessageDialog(null, panelResult, null, JOptionPane.PLAIN_MESSAGE);
-//            } catch (NullPointerException ex) {
-//                JOptionPane.showMessageDialog(null, "Действие не выбрано!", null, JOptionPane.PLAIN_MESSAGE);
-//            }
-//        }
-//    }
+
 
 public class chooseActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-    // Цвета и шрифт в стиле Minecraft
+  
     Color mcDark = new Color(34, 34, 34);
     Color mcBorder = new Color(85, 85, 85);
     Color mcText = Color.WHITE;
-    Font mcFont = new Font("Arial", Font.BOLD, 14); // Если нет Minecraft-шрифта
+    Font mcFont = new Font("Arial", Font.BOLD, 14);
 
     String actionName = "";
     ArrayList<JRadioButton> buttons = new ArrayList<>();
     
-    // Создаем кнопки в стиле Minecraft
+ 
     JRadioButton houseB = new JRadioButton("Построить дом");
     JRadioButton treeB = new JRadioButton("Срубить дерево");
     JRadioButton fireB = new JRadioButton("Развести костер");
     
-    // Стилизуем кнопки
+    
     for (JRadioButton button : new JRadioButton[]{houseB, treeB, fireB}) {
         button.setBackground(mcDark);
         button.setForeground(mcText);
@@ -317,7 +270,7 @@ public class chooseActionListener implements ActionListener {
     buttons.add(treeB);
     buttons.add(fireB);
     
-    // Панель выбора действия
+ 
     JPanel panel = new JPanel();
     panel.setBackground(mcDark);
     panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -325,7 +278,7 @@ public class chooseActionListener implements ActionListener {
     panel.add(treeB);
     panel.add(fireB);
     
-    // Диалог выбора действия
+ 
     JOptionPane.showMessageDialog(
         null, 
         panel, 
@@ -334,7 +287,7 @@ public class chooseActionListener implements ActionListener {
         null
     );
     
-    // Определяем выбранное действие
+  
     for (JRadioButton button : buttons) {
         if (button.isSelected()) {
             actionName = button.getText();
@@ -350,17 +303,17 @@ public class chooseActionListener implements ActionListener {
         ActionResult result = player.makeAction(selectedObj, action);
         
        if (result.isDeleteObjectFromRegion()) {
-            // Получаем текущую модель
+    
             DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
 
-            // Удаляем элемент напрямую из модели
+            
             model.remove(selectedIndex);
 
-            // Обновляем данные в регионе (синхронизация)
+            
             player.getCurrentRegion().getObjectsInterestList().remove(selectedIndex);
 
-            // Если нужно обновить другие компоненты
-            area.setText(""); // Очищаем область вывода
+            
+            area.setText("");
         }
         
         ResultPanel panelResult = new ResultPanel(result, actionName, manager);
@@ -376,7 +329,7 @@ public class chooseActionListener implements ActionListener {
         );
         
     } catch (NullPointerException ex) {
-        // Показ ошибки без отдельного метода
+       
         JOptionPane.showMessageDialog(
             null,
             "Действие не выбрано!",
@@ -417,14 +370,5 @@ public class chooseActionListener implements ActionListener {
             JOptionPane.showMessageDialog(null, scrollPane, null, JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
-//    public class inventoryListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            InventoryPanel panelInventory = new InventoryPanel(player);
-//            JOptionPane.showMessageDialog(null, panelInventory, null, JOptionPane.INFORMATION_MESSAGE);
-//        }
-//    }
 
 }

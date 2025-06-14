@@ -8,10 +8,10 @@ import Bioms.Desert;
 import GUI.ResourceLoader;
 import Region_Logic.ObjectInterest;
 import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -37,12 +37,12 @@ public class DesertRegion extends BaseRegion {
 
     @Override
     protected int getMinNumOfClasses() {
-        return 2;
+        return 3;
     }
 
     @Override
     protected int getMaxNumOfClasses() {
-        return 4;
+        return 6;
     }
 
     @Override

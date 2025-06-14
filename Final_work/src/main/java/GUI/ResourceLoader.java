@@ -21,12 +21,12 @@ import javax.swing.JOptionPane;
  * @author Andrey
  */
 public class ResourceLoader {
-    private static ResourceLoader instance; // Singleton instance
+    private static ResourceLoader instance; 
 
     private final Map<String, BufferedImage> loadedImages = new HashMap<>();
 
     private ResourceLoader() {
-        // приватный конструктор
+     
     }
 
     public static ResourceLoader getInstance() {
@@ -64,11 +64,11 @@ public class ResourceLoader {
                 System.out.println("Выбрана папка: " + baseFolder.getAbsolutePath());
             } else {
                 JOptionPane.showMessageDialog(null, "Папка не выбрана. Пожалуйста, выберите папку.");
-                // Цикл повторится, пока не выберут папку
+                
             }
         }
 
-        // Попытка загрузить все файлы из папки
+        
         for (String fileName : requiredFiles) {
             File file = new File(baseFolder, fileName);
             if (file.exists()) {
@@ -86,7 +86,7 @@ public class ResourceLoader {
             }
         }
 
-        // Пока есть не загруженные файлы - запрашиваем их вручную
+      
         while (loadedImages.size() < requiredFiles.size()) {
             List<String> missingFiles = new ArrayList<>();
             for (String fileName : requiredFiles) {
@@ -115,7 +115,7 @@ public class ResourceLoader {
                     JOptionPane.showMessageDialog(null,
                         "Вы выбрали неправильный файл.\nОжидался: " + expectedFileName,
                         "Ошибка", JOptionPane.ERROR_MESSAGE);
-                    continue; // повторить запрос для этого же файла
+                    continue; 
                 }
 
                 try {
@@ -145,7 +145,7 @@ public class ResourceLoader {
             JOptionPane.showMessageDialog(null,
                 "Все файлы успешно загружены!",
                 "Успех", JOptionPane.INFORMATION_MESSAGE);
-            // Тут можно дальше работать с loadedImages
+         
         } else {
             JOptionPane.showMessageDialog(null,
                 "Не все файлы загружены.",
