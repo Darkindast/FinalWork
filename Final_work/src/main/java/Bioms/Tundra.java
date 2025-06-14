@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Bioms;
 
 import ObjectInterest_Tundra.Swamp;
@@ -11,10 +8,14 @@ import ObjectInterest_Tundra.OpenWoodland;
 import ObjectInterest_Tundra.ReindeerHerdersCamp;
 
 /**
- *
- * @author Andrey
+ * Класс, представляющий биом "Тундра".
+ * Содержит список типов объектов интереса, характерных для тундровой зоны:
+ * {@link Glacier}, {@link Geyser}, {@link OpenWoodland}, {@link ReindeerHerdersCamp}, {@link Swamp}.
  */
 public class Tundra extends Biom {
+    /**
+     * Создаёт экземпляр тундрового биома с предопределёнными объектами интереса.
+     */
     public Tundra(){
         super(Glacier.class, Geyser.class, OpenWoodland.class, ReindeerHerdersCamp.class, Swamp.class);
     }

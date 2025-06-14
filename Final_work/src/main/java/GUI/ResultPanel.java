@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 import Command_Classes.ActionResult;
@@ -10,25 +7,41 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-/**
- *
- * @author Andrey
- */
 import javax.swing.*;
 import java.awt.*;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+
+/**
+ * Панель отображения результата выполнения команды.
+ * 
+ * В верхней части отображает уменьшенное изображение, связанное с выполненной командой,
+ * в нижней — текст с результатом действия.
+ * Текст форматируется с переносом строк и кастомным шрифтом (если доступен Minecraft.ttf).
+ * 
+ * Используется {@link ActionResult} для получения текста результата,
+ * и {@link CommandManager} для получения изображения по имени команды.
+ */
 public class ResultPanel extends JPanel {
+    /** Изображение, связанное с командой */
     private BufferedImage image;
+    
+    /** Текстовое поле для отображения результата */
     private JTextArea area = new JTextArea();
+    
+    /** Панель прокрутки для текстового поля */
     private JScrollPane scrollPane;
 
+    /**
+     * Конструктор, создающий панель с результатом.
+     * 
+     * @param result объект результата действия {@link ActionResult}
+     * @param actionName имя команды, результат которой отображается
+     * @param manager менеджер команд для получения изображения
+     */
     public ResultPanel(ActionResult result, String actionName, CommandManager manager) {
         setLayout(new BorderLayout()); 
         
@@ -59,6 +72,12 @@ public class ResultPanel extends JPanel {
             
             
             JPanel imagePanel = new JPanel() {
+                /**
+                 * Переопределённый метод рисования панели.
+                 * Отрисовывает фоновое изображение.
+                 * 
+                 * @param g графический контекст для рисования
+                 */
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);

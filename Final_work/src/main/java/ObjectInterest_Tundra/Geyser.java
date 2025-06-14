@@ -1,23 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ObjectInterest_Tundra;
 
 import static Region_Logic.InsideObjectType.*;
 import Region_Logic.ObjectInterest;
 
 /**
- *
- * @author Andrey
+ * Класс, представляющий объект "Гейзер" в регионе тундры.
+ * Содержит элементы холма, термального источника и ручья.
+ * Валка деревьев, разведение огня и строительство домов запрещены.
  */
 public class Geyser extends ObjectInterest {
-
+    
+    /**
+     * Конструктор объекта "Гейзер".
+     * Инициализирует компоненты объекта и устанавливает ограничения на валку деревьев,
+     * разведение огня и строительство домов.
+     */
     public Geyser() {
         super(HILL, THERMAL_POOL, STREAM);
+        this.isFellTreeAllowed = false;
         this.isFireAllowed = false;
         this.isHouseBuildingAllowed = false;
     }
+    
+    /**
+     * Возвращает строковое представление типа объекта.
+     *
+     * @return строка "Гейзер"
+     */
     @Override
     public String getObjectType() {
         return "Гейзер";

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 import java.awt.*;
@@ -9,11 +6,16 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
- *
- * @author Andrey
+ * Класс {@code Frame} представляет основное окно графического интерфейса приложения.
+ * Наследует {@link JFrame} и инициализирует главный {@link Panel}.
  */
 public class Frame extends JFrame {
-
+    /**
+     * Создаёт новое окно с указанным заголовком, задаёт размеры, добавляет панель и делает окно видимым.
+     *
+     * @param title заголовок окна
+     * @throws IOException если возникли ошибки при создании {@link Panel}, например, при загрузке ресурсов
+     */
     public Frame(String title) throws IOException {
         super(title);
         setSize(700, 400);

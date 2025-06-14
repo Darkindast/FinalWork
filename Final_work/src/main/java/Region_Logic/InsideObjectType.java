@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
+
 package Region_Logic;
 
 /**
- *
- * @author Andrey
+ * Перечисление InsideObjectType содержит типы объектов, которые могут находиться внутри регионов.
+ * Каждый тип связан с русским названием объекта для удобства отображения.
  */
 public enum InsideObjectType {
    CAVE("Пещера"),
@@ -51,10 +48,20 @@ public enum InsideObjectType {
     
     private final String value;
 
+    /**
+     * Конструктор перечисления.
+     *
+     * @param value Название объекта
+     */
     InsideObjectType(String value) {
         this.value = value;
     }
-
+    
+    /**
+     * Возвращает русское название объекта.
+     *
+     * @return строка с названием объекта
+     */
     @Override
     public String toString() {
         return value;

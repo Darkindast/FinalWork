@@ -6,17 +6,20 @@ import java.awt.Container;
 import java.io.IOException;
 import javax.swing.JFrame;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
- *
- * @author Andrey
+ * Главное окно игры, содержащее основную игровую панель.
+ * Наследует {@link JFrame} и настраивает расположение компонентов.
  */
 public class MainGameFrame extends JFrame {
-
+    /**
+     * Создаёт главное окно игры с указанным заголовком и добавляет в него {@link MainGamePanel}.
+     *
+     * @param title          заголовок окна
+     * @param commandManager менеджер команд, используемый для обработки действий игрока
+     * @param player         объект игрока
+     * @param regionManager  менеджер регионов, отвечающий за логику игры на карте
+     * @throws IOException если произошла ошибка при загрузке ресурсов в {@link MainGamePanel}
+     */
     public MainGameFrame(String title, CommandManager commandManager, Player player, RegionManager regionManager) throws IOException {
         super(title);
         setSize(800, 400);

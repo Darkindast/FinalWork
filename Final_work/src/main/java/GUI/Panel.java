@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
 
 import Region_Logic.*;
@@ -11,43 +7,84 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
 
 
-
+/**
+ * Панель выбора параметров генерации мира.
+ * Позволяет задать количество регионов каждого типа (тундра, пустыня, смешанный лес),
+ * а также начать новую игру с выбранными параметрами.
+ */
 public class Panel extends JPanel {
 
+    /**
+     * Фоновое изображение панели.
+     */
     private BufferedImage image;
+
+    /**
+     * Кэш загруженных изображений (имя -> изображение).
+     */
     private Map<String, BufferedImage> loadedImages = new HashMap<>();
 
+    /**
+     * Основная надпись панели.
+     */
     JLabel mainLabelPanel;
+
+    /**
+     * Метки для типов регионов.
+     */
     JLabel labelTundra;
     JLabel labelDesert;
     JLabel labelMildClimate;
+
+    /**
+     * Поля ввода для количества регионов каждого типа.
+     */
     TextField countTundra;
     TextField countDesert;
     TextField countMildClimate;
-    JButton goButton;
-    RegionManager regionManager = new RegionManager();
-    CommandManager commandManager = new CommandManager();
-    Player player = new Player();
-    JFrame currentFrame;
 
+    /**
+     * Кнопка для начала новой игры.
+     */
+    JButton goButton;
+
+    /**
+     * Менеджер регионов для генерации и хранения регионов.
+     */
+    RegionManager regionManager = new RegionManager();
+
+    /**
+     * Менеджер команд игры (пока не используется явно).
+     */
+    CommandManager commandManager = new CommandManager();
+
+    /**
+     * Игрок, для которого создаётся мир.
+     */
+    Player player = new Player();
+
+    /**
+     * Текущее окно JFrame, необходимое для управления отображением окон.
+     */
+    JFrame currentFrame;
+    
+    /**
+     * Конструктор панели выбора регионов.
+     * Загружает необходимые ресурсы, инициализирует компоненты и настраивает интерфейс.
+     * 
+     * @param frame текущее окно JFrame, в котором находится панель
+     * @throws IOException в случае ошибки загрузки ресурсов
+     */
     public Panel(JFrame frame) throws IOException {
         this.currentFrame = frame;
         ResourceLoader.getInstance().loadRequiredResourcesFromFolder();
@@ -73,6 +110,14 @@ public class Panel extends JPanel {
 
  
     }
+    
+    /**
+     * Загружает и возвращает шрифт Minecraft указанного размера.
+     * Если загрузка кастомного шрифта не удалась, возвращает моноширинный шрифт по умолчанию.
+     *
+     * @param size размер шрифта в пунктах
+     * @return объект Font с заданным размером
+     */
     private Font getMinecraftFont(float size) {
         try {
             return Font.createFont(Font.TRUETYPE_FONT,
@@ -81,12 +126,25 @@ public class Panel extends JPanel {
             return new Font("Monospaced", Font.BOLD, (int)size); 
         }
     }
+    
+    /**
+     * Переопределённый метод рисования панели.
+     * Отрисовывает фоновое изображение.
+     * 
+     * @param g графический контекст для рисования
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
     }
 
+    /**
+     * Применяет стиль к переданной метке,
+     * используя шрифт Minecraft и настраивая цвета и бордер.
+     * 
+     * @param label JLabel, к которому применяется стиль
+     */
     private void changeLabels(JLabel label) {
         try {
             Font minecraftFont = Font.createFont(Font.TRUETYPE_FONT,
@@ -103,7 +161,10 @@ public class Panel extends JPanel {
     }
 
  
-
+    /**
+     * Настраивает стили для компонентов в стиле Minecraft,
+     * включая фон, цвет текста, шрифты и бордеры.
+     */
     private void setupMinecraftStyles() {
         
         setBackground(new Color(32, 32, 32));
@@ -125,41 +186,56 @@ public class Panel extends JPanel {
         mainLabelPanel.setFont(new Font("Monospaced", Font.BOLD, 24));
         mainLabelPanel.setForeground(new Color(130, 130, 130)); // Золотой цвет
     }
+    
+    /**
+     * Добавляет и размещает компоненты панели с помощью GridBagLayout.
+     */
+    private void addComponents() {
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5, 20, 20, 20);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            changeLabels(labelTundra);
+            changeLabels(labelDesert);
+            changeLabels(labelMildClimate);
+            add(labelTundra, gbc);
+            gbc.gridy++;
+            add(labelDesert, gbc);
+            gbc.gridy++;
+            add(labelMildClimate, gbc);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            mainLabelPanel.setFont(new Font("Monospaced", Font.BOLD, 30));
+            mainLabelPanel.setForeground(Color.white);
+            add(mainLabelPanel, gbc);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            add(countTundra, gbc);
+            gbc.gridy++;
+            add(countDesert, gbc);
+            gbc.gridy++;
+            add(countMildClimate, gbc);
+            gbc.gridx = 0;
+            gbc.gridy++;
+            add(goButton, gbc);
 
-private void addComponents() {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 20, 20, 20);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        changeLabels(labelTundra);
-        changeLabels(labelDesert);
-        changeLabels(labelMildClimate);
-        add(labelTundra, gbc);
-        gbc.gridy++;
-        add(labelDesert, gbc);
-        gbc.gridy++;
-        add(labelMildClimate, gbc);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        mainLabelPanel.setFont(new Font("Monospaced", Font.BOLD, 30));
-        mainLabelPanel.setForeground(Color.white);
-        add(mainLabelPanel, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        add(countTundra, gbc);
-        gbc.gridy++;
-        add(countDesert, gbc);
-        gbc.gridy++;
-        add(countMildClimate, gbc);
-        gbc.gridx = 0;
-        gbc.gridy++;
-        add(goButton, gbc);
-
-    }
-
+        }
+    
+    /**
+     * Обработчик нажатия кнопки "Новая игра".
+     * Проверяет введённые данные и запускает генерацию мира с указанными регионами.
+     */
     public class goButtonListener implements ActionListener {
 
+        /**
+         * Вызывается при нажатии кнопки "Новая игра".
+         * Проверяет корректность введённых чисел регионов, 
+         * предупреждает пользователя о некорректных данных,
+         * и при успешной проверке инициализирует генерацию регионов и создание новой игровой панели.
+         * 
+         * @param e событие нажатия кнопки
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (choiceCheck(countTundra) && choiceCheck(countDesert) && choiceCheck(countMildClimate)) {
@@ -182,7 +258,14 @@ private void addComponents() {
                 }
             }
         }
-
+        /**
+         * Проверяет, что хотя бы один регион выбран (больше нуля).
+         * 
+         * @param countTundra количество тундр
+         * @param countDesert количество пустынь
+         * @param countMildClimate количество смешанных лесов
+         * @return true, если хотя бы один регион выбран, иначе false
+         */
         public boolean checkChoice(int countTundra, int countDesert, int countMildClimate) {
             boolean result = true;
             if (countTundra == 0 && countDesert == 0 && countMildClimate == 0) {
@@ -191,7 +274,13 @@ private void addComponents() {
             }
             return result;
         }
-
+        /**
+         * Проверяет валидность ввода в поле TextField.
+         * Проверяет, что введено неотрицательное число и не больше 7.
+         * 
+         * @param count поле ввода количества регионов
+         * @return true, если ввод корректен, иначе false
+         */
         public boolean choiceCheck(TextField count) {
             int choice = 0;
             boolean result = true;

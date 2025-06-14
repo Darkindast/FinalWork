@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 import java.awt.image.BufferedImage;
@@ -17,18 +14,29 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Andrey
+ * Класс {@code ResourceLoader} отвечает за загрузку изображений,
+ * необходимых для работы графического интерфейса приложения.
+ * Реализован по шаблону Singleton.
  */
 public class ResourceLoader {
+    /** Единственный экземпляр класса. */
     private static ResourceLoader instance; 
-
+    
+    /** Карта уже загруженных изображений (по имени файла). */
     private final Map<String, BufferedImage> loadedImages = new HashMap<>();
 
+    /**
+     * Приватный конструктор для реализации Singleton.
+     */
     private ResourceLoader() {
      
     }
 
+    /**
+     * Возвращает единственный экземпляр {@code ResourceLoader}.
+     *
+     * @return экземпляр {@code ResourceLoader}
+     */
     public static ResourceLoader getInstance() {
         if (instance == null) {
             instance = new ResourceLoader();
@@ -36,6 +44,11 @@ public class ResourceLoader {
         return instance;
     }
 
+     /**
+     * Загружает все необходимые изображения из выбранной пользователем папки.
+     * Если каких-либо файлов не хватает, пользователю будет предложено выбрать их вручную.
+     * После успешной загрузки всех ресурсов отображается сообщение об успехе.
+     */
     public void loadRequiredResourcesFromFolder() {
         List<String> requiredFiles = Arrays.asList(
             "background.png",
@@ -152,7 +165,13 @@ public class ResourceLoader {
                 "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
+    /**
+     * Возвращает изображение, ранее загруженное по имени файла.
+     *
+     * @param fileName имя файла изображения
+     * @return {@code BufferedImage}, соответствующее имени файла, или {@code null}, если не найдено
+     */
     public BufferedImage getImage(String fileName) {
         return loadedImages.get(fileName);
     }
