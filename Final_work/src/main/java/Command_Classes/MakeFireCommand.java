@@ -1,4 +1,3 @@
-
 package Command_Classes;
 
 import GUI.ResourceLoader;

@@ -23,6 +23,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -351,7 +352,10 @@ public class MainGamePanel extends JPanel {
         JRadioButton houseB = new JRadioButton("Построить дом");
         JRadioButton treeB = new JRadioButton("Срубить дерево");
         JRadioButton fireB = new JRadioButton("Развести костер");
-
+        ButtonGroup group = new ButtonGroup();
+        group.add(houseB);
+        group.add(treeB);
+        group.add(fireB);
 
         for (JRadioButton button : new JRadioButton[]{houseB, treeB, fireB}) {
             button.setBackground(mcDark);

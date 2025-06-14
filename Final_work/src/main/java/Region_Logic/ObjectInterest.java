@@ -40,13 +40,12 @@ public abstract class ObjectInterest {
 
     /**
      * Генерирует текущий список внутренних объектов,
-     * добавляя 0-4 экземпляров каждого возможного типа.
+     * добавляя 1-4 экземпляров каждого возможного типа.
      */
     public void generateInsideObjectsList() {
-        int size = possibleInsideObjects.size();
         for (InsideObjectType type : possibleInsideObjects) {
-            int randomIndex = random.nextInt(5) + 1;
-            for (int i = 1; i < randomIndex; i++) {
+            int count = random.nextInt(4) + 1; 
+            for (int i = 0; i < count; i++) {
                 insideObjectsList.add(type);
             }
         }
