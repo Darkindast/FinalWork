@@ -35,7 +35,7 @@ public class CommandManager {
     /**
      * Возвращает список команд.
      *
-     * @return HashMap<String, Command> — отображение имён команд на объекты команд.
+     * @return {@code HashMap<String, Command>} - карта команд по их названиям.
      */
     public HashMap<String, Command> getCommandList() {
         return commandList;

@@ -8,8 +8,6 @@ import Region_Logic.ObjectInterest;
  * Класс, представляющий объект "Ущелье" в пустынном регионе.
  * Ущелье содержит объекты: ручей (STREAM), валун (BOULDER) и кактус (CACTUS).
  * Действия с ущельем ограничены: нельзя валить деревья и строить дома, но можно разводить огонь.
- * 
- * @author
  */
 public class Gorge extends ObjectInterest {
     /**
